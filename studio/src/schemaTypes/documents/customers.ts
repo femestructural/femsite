@@ -1,5 +1,7 @@
+import React from 'react'
 import { UserIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
+import { UrlImagePreview } from '../objects/UrlImagePreview'
 
 /**
  * Person schema.  Define and edit the fields for the 'person' content type.
@@ -23,7 +25,7 @@ export const customer = defineType({
             title: 'Link contact',
             type: 'url',
             validation: (rule) => rule.uri({
-                scheme: ['http', 'https'],
+                scheme: ['https'],
             })
         }),
         defineField({
@@ -32,23 +34,28 @@ export const customer = defineType({
             type: 'url',
             description: 'URL of the cover image for the post',
             validation: (rule) => rule.uri({
-                scheme: ['http', 'https'],
-            })
+                scheme: ['https'],
+            }),
+            components: {
+                input: UrlImagePreview
+            }
         }),
 
     ],
     // List preview configuration. https://www.sanity.io/docs/previews-list-views
     preview: {
         select: {
-            company: 'company',
-            contact: 'contact',
-            logo: 'logo',
+            title: 'company',
+            subtitle: 'contact',
+            imageUrl: 'logo',
         },
         prepare(selection) {
+            const { title, subtitle, imageUrl } = selection
             return {
-                title: selection.company,
-                contact: selection.contact,
-                logo: selection.logo
+                title: title,
+                subtitle: subtitle,
+                // Si hay URL, dibujamos la imagen; si no, Sanity muestra su icono por defecto
+                media: imageUrl ? React.createElement('img', { src: imageUrl, alt: title, style: { objectFit: 'cover' } }) : null
             }
         },
     },
