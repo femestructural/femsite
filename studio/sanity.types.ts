@@ -147,6 +147,17 @@ export type Button = {
   link?: Link
 }
 
+export type Customer = {
+  _id: string
+  _type: 'customer'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  company: string
+  contact?: string
+  logo?: string
+}
+
 export type Project = {
   _id: string
   _type: 'project'
@@ -554,6 +565,7 @@ export type AllSanitySchemaTypes =
   | BlockContentTextOnly
   | BlockContent
   | Button
+  | Customer
   | Project
   | Slug
   | Settings
