@@ -109,7 +109,7 @@ export const project = defineType({
             title: 'Slug',
             type: 'slug',
             options: {
-                source: 'title.en',
+                source: 'title.es',
                 maxLength: 96,
             },
             validation: Rule => Rule.required()
