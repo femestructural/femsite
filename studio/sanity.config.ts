@@ -2,20 +2,20 @@
  * This config is used to configure your Sanity Studio.
  * Learn more: https://www.sanity.io/docs/configuration
  */
-
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './src/schemaTypes'
-import {structure} from './src/structure'
-import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
+import React from 'react'
+import { defineConfig } from 'sanity'
+import { structureTool } from 'sanity/structure'
+import { visionTool } from '@sanity/vision'
+import { schemaTypes } from './src/schemaTypes'
+import { structure } from './src/structure'
+import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import {
   presentationTool,
   defineDocuments,
   defineLocations,
   type DocumentLocation,
 } from 'sanity/presentation'
-import {assist} from '@sanity/assist'
+import { assist } from '@sanity/assist'
 
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'
@@ -38,17 +38,27 @@ function resolveHref(documentType?: string, slug?: string): string | undefined {
       return slug ? `/posts/${slug}` : undefined
     case 'page':
       return slug ? `/${slug}` : undefined
+    case 'project':
+      return slug ? `/portafolio/${slug}` : undefined
     default:
       console.warn('Invalid document type:', documentType)
       return undefined
   }
 }
 
+const Icon = () => {
+  return React.createElement('img', {
+    src: 'https://res.cloudinary.com/ditwfi7c9/image/upload/v1756680554/FEM-LOGO-SIMPLE_songzr.svg',
+    alt: 'FEM CMS Logo',
+    style: { width: '100%', height: '100%', objectFit: 'contain', padding: '2px' }
+  })
+}
+
 // Main Sanity configuration
 export default defineConfig({
   name: 'default',
-  title: 'Sanity + Next.js Starter Template',
-
+  title: 'FEM CMS',
+  icon: Icon,
   projectId,
   dataset,
 
@@ -76,6 +86,10 @@ export default defineConfig({
             route: '/posts/:slug',
             filter: `_type == "post" && slug.current == $slug || _id == $slug`,
           },
+          {
+            route: '/portafolio/:slug',
+            filter: `_type == "project" && slug.current == $slug || _id == $slug`,
+          },
         ]),
         // Locations Resolver API allows you to define where data is being used in your application. https://www.sanity.io/docs/visual-editing/presentation-resolver-api#8d8bca7bfcd7
         locations: {
@@ -86,13 +100,13 @@ export default defineConfig({
           }),
           page: defineLocations({
             select: {
-              name: 'name',
+              title: 'title.es',
               slug: 'slug.current',
             },
             resolve: (doc) => ({
               locations: [
                 {
-                  title: doc?.name || 'Untitled',
+                  title: doc?.title || 'Untitled',
                   href: resolveHref('page', doc?.slug)!,
                 },
               ],
@@ -112,6 +126,24 @@ export default defineConfig({
                 {
                   title: 'Home',
                   href: '/',
+                } satisfies DocumentLocation,
+              ].filter(Boolean) as DocumentLocation[],
+            }),
+          }),
+          project: defineLocations({
+            select: {
+              title: 'title.es', // Apuntamos al título en español
+              slug: 'slug.current',
+            },
+            resolve: (doc) => ({
+              locations: [
+                {
+                  title: doc?.title || 'Untitled',
+                  href: resolveHref('project', doc?.slug)!, // Usamos 'project'
+                },
+                {
+                  title: 'Portafolio', // Enlace de regreso al índice
+                  href: '/portafolio',
                 } satisfies DocumentLocation,
               ].filter(Boolean) as DocumentLocation[],
             }),

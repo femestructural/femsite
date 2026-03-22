@@ -49,12 +49,20 @@ export type PostReference = {
   [internalGroqTypeReferenceTo]?: 'post'
 }
 
+export type ProjectReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'project'
+}
+
 export type Link = {
   _type: 'link'
-  linkType?: 'href' | 'page' | 'post'
+  linkType?: 'href' | 'page' | 'post' | 'project'
   href?: string
   page?: PageReference
   post?: PostReference
+  project?: ProjectReference
   openInNewTab?: boolean
 }
 
@@ -141,10 +149,38 @@ export type BlockContent = Array<
     }
 >
 
+export type LocaleString = {
+  _type: 'localeString'
+  es?: string
+  en?: string
+}
+
 export type Button = {
   _type: 'button'
   buttonText?: string
   link?: Link
+}
+
+export type Colaborator = {
+  _id: string
+  _type: 'colaborator'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  role: {
+    es: string
+    en: string
+  }
+  description?: {
+    es?: string
+    en?: string
+  }
+  quote?: {
+    es?: string
+    en?: string
+  }
+  photoUrl?: string
 }
 
 export type Customer = {
@@ -158,73 +194,61 @@ export type Customer = {
   logo?: string
 }
 
-export type Project = {
-  _id: string
-  _type: 'project'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title: LocalizedText
-  slug: Slug
-  story?: LocalizedParagraphArray
-  category: LocalizedText
-  location?: LocalizedText
-  area?: string
-  year?: string
-  gridColumns: '1' | '2' | '3'
-  grid_variant: number
-  portfolio_image: string
-  other_projects_image: string
-  project_page_image: string
-  information_media?: Array<
-    {
-      _key: string
-    } & MediaItem
-  >
-  gallery_media: Array<
-    {
-      _key: string
-    } & MediaItem
-  >
-  model3d_url?: string
-  status: 'draft' | 'published' | 'archived'
-}
-
-export type Slug = {
-  _type: 'slug'
-  current: string
-  source?: string
-}
-
 export type Settings = {
   _id: string
   _type: 'settings'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
-  description?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
+  title: LocaleString
+  description?: {
+    es?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal'
+      listItem?: never
+      markDefs?: Array<{
+        linkType?: 'href' | 'page' | 'post' | 'project'
+        href?: string
+        page?: PageReference
+        post?: PostReference
+        project?: ProjectReference
+        openInNewTab?: boolean
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
       _key: string
     }>
-    style?: 'normal'
-    listItem?: never
-    markDefs?: Array<{
-      linkType?: 'href' | 'page' | 'post'
-      href?: string
-      page?: PageReference
-      post?: PostReference
-      openInNewTab?: boolean
-      _type: 'link'
+    en?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal'
+      listItem?: never
+      markDefs?: Array<{
+        linkType?: 'href' | 'page' | 'post' | 'project'
+        href?: string
+        page?: PageReference
+        post?: PostReference
+        project?: ProjectReference
+        openInNewTab?: boolean
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
       _key: string
     }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  }
   ogImage?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -252,14 +276,53 @@ export type SanityImageHotspot = {
   width: number
 }
 
+export type Project = {
+  _id: string
+  _type: 'project'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: LocalizedText
+  slug: Slug
+  story?: LocalizedParagraphArray
+  category: LocalizedText
+  location?: LocalizedText
+  area?: string
+  year?: string
+  gridColumns: '1' | '2' | '3'
+  grid_variant: number
+  ogImage?: string
+  portfolio_image: string
+  other_projects_image: string
+  project_page_image: string
+  information_media?: Array<
+    {
+      _key: string
+    } & MediaItem
+  >
+  gallery_media: Array<
+    {
+      _key: string
+    } & MediaItem
+  >
+  model3d_url?: string
+  status: 'draft' | 'published' | 'archived'
+}
+
+export type Slug = {
+  _type: 'slug'
+  current: string
+  source?: string
+}
+
 export type Page = {
   _id: string
   _type: 'page'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name: string
-  slug: Slug
+  title: LocaleString
+  slug?: Slug
   heading: string
   subheading?: string
   pageBuilder?: Array<
@@ -558,19 +621,22 @@ export type AllSanitySchemaTypes =
   | LocalizedText
   | PageReference
   | PostReference
+  | ProjectReference
   | Link
   | SanityImageAssetReference
   | CallToAction
   | InfoSection
   | BlockContentTextOnly
   | BlockContent
+  | LocaleString
   | Button
+  | Colaborator
   | Customer
-  | Project
-  | Slug
   | Settings
   | SanityImageCrop
   | SanityImageHotspot
+  | Project
+  | Slug
   | Page
   | PersonReference
   | Post
