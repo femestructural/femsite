@@ -1,10 +1,29 @@
-import {defineField, defineType} from 'sanity'
-import {DocumentIcon} from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
+import { DocumentIcon } from '@sanity/icons'
 
 /**
  * Page schema.  Define and edit the fields for the 'page' content type.
  * Learn more: https://www.sanity.io/docs/studio/schema-types
  */
+
+
+export const localeString = defineType({
+  title: 'Texto Traducible (String)',
+  name: 'localeString',
+  type: 'object',
+  fields: [
+    defineField({
+      title: 'Español',
+      name: 'es',
+      type: 'string',
+    }),
+    defineField({
+      title: 'Inglés',
+      name: 'en',
+      type: 'string',
+    }),
+  ],
+});
 
 export const page = defineType({
   name: 'page',
@@ -13,21 +32,20 @@ export const page = defineType({
   icon: DocumentIcon,
   fields: [
     defineField({
-      name: 'name',
-      title: 'Name',
-      type: 'string',
+      name: 'title',
+      title: 'Título de la Página',
+      type: 'localeString', // Usamos nuestro helper bilingüe
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'Identificador (Slug)',
       type: 'slug',
-      validation: (Rule) => Rule.required(),
       options: {
-        source: 'name',
+        source: 'title.es', // Genera el slug basado en el título en español
         maxLength: 96,
       },
+      description: 'Debe coincidir con la ruta (ej: "nosotros", "direccion-de-obra")',
     }),
     defineField({
       name: 'heading',
@@ -44,7 +62,7 @@ export const page = defineType({
       name: 'pageBuilder',
       title: 'Page builder',
       type: 'array',
-      of: [{type: 'callToAction'}, {type: 'infoSection'}],
+      of: [{ type: 'callToAction' }, { type: 'infoSection' }],
       options: {
         insertMenu: {
           // Configure the "Add Item" menu to display a thumbnail preview of the content type. https://www.sanity.io/docs/studio/array-type#efb1fe03459d

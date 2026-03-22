@@ -1,7 +1,8 @@
 import { person } from './documents/person'
-import { page } from './documents/page'
+import { page, localeString } from './documents/page'
 import { post } from './documents/post'
 import { customer } from './documents/customers'
+import { colaborator } from './documents/colaborators'
 import {
   project,
   localizedText,
@@ -28,8 +29,10 @@ export const schemaTypes = [
   person,
   project,
   customer,
+  colaborator,
   // Objects
   button,
+  localeString,
   blockContent,
   blockContentTextOnly,
   infoSection,
