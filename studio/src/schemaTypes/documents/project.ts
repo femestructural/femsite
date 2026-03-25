@@ -99,6 +99,12 @@ export const project = defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'order',
+            title: 'Order project in grid projects',
+            type: 'number',
+            validation: Rule => Rule.required()
+        }),
+        defineField({
             name: 'title',
             title: 'Title',
             type: 'localizedText',

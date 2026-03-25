@@ -1822,6 +1822,13 @@
           "type": "string"
         }
       },
+      "order": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": false
+      },
       "title": {
         "type": "objectAttribute",
         "value": {

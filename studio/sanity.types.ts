@@ -282,6 +282,7 @@ export type Project = {
   _createdAt: string
   _updatedAt: string
   _rev: string
+  order: number
   title: LocalizedText
   slug: Slug
   story?: LocalizedParagraphArray
