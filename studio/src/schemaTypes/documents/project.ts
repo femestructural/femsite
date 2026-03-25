@@ -275,6 +275,16 @@ export const project = defineType({
                     : null
             }
         }
-    }
+    },
+    //definimos como se ordenan los docs
+    orderings: [
+        {
+            title: 'Order Manual',
+            name: 'orderAsc',
+            by: [
+                { field: 'order', direction: 'asc' }
+            ]
+        }
+    ]
 })
 
