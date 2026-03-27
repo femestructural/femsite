@@ -99,6 +99,12 @@ export const project = defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'order',
+            title: 'Order project in grid projects',
+            type: 'number',
+            validation: Rule => Rule.required()
+        }),
+        defineField({
             name: 'title',
             title: 'Title',
             type: 'localizedText',
@@ -109,7 +115,7 @@ export const project = defineType({
             title: 'Slug',
             type: 'slug',
             options: {
-                source: 'title.en',
+                source: 'title.es',
                 maxLength: 96,
             },
             validation: Rule => Rule.required()
@@ -164,8 +170,15 @@ export const project = defineType({
             validation: Rule => Rule.required().min(1),
             description: 'Variante de grid para la visualización'
         }),
-
-        // Regresamos a URL para integrarlo con Cloudinary
+        defineField({
+            name: 'ogImage',
+            title: 'Imagen SEO (URL de Cloudinary)',
+            type: 'url',
+            description: 'Opcional. Si lo dejas vacío, se usará la ogImage de Home',
+            components: {
+                input: UrlImagePreview
+            }
+        }),
         defineField({
             name: 'portfolio_image',
             title: 'Portfolio Cover Image URL',
@@ -234,17 +247,44 @@ export const project = defineType({
         select: {
             title: 'title.es',
             subtitle: 'category.es',
-            imageUrl: 'portfolio_image' // Tomamos el string de la URL
+            imageUrl: 'portfolio_image',
         },
         prepare(selection) {
             const { title, subtitle, imageUrl } = selection
+
+            // 1. Optimización: Transformamos la URL pesada en un thumbnail miniatura
+            let thumbnailUrl = imageUrl
+
+            if (imageUrl && imageUrl.includes('cloudinary.com')) {
+                // Le decimos a Cloudinary: "Dame esta misma imagen, pero recortada a 100x100px y súper comprimida"
+                thumbnailUrl = imageUrl.replace(
+                    '/upload/',
+                    '/upload/w_100,h_100,c_fill,q_auto,f_auto/'
+                )
+            }
+
             return {
                 title: title,
                 subtitle: subtitle,
-                // Si hay URL, dibujamos la imagen; si no, Sanity muestra su icono por defecto
-                media: imageUrl ? React.createElement('img', { src: imageUrl, alt: title, style: { objectFit: 'cover' } }) : null
+                media: thumbnailUrl
+                    ? React.createElement('img', {
+                        src: thumbnailUrl,
+                        alt: title || 'Thumbnail',
+                        style: { objectFit: 'cover', width: '100%', height: '100%' }
+                    })
+                    : null
             }
         }
-    }
+    },
+    //definimos como se ordenan los docs
+    orderings: [
+        {
+            title: 'Order Manual',
+            name: 'orderAsc',
+            by: [
+                { field: 'order', direction: 'asc' }
+            ]
+        }
+    ]
 })
 

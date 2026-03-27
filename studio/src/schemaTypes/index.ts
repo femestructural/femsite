@@ -1,6 +1,10 @@
 import { person } from './documents/person'
-import { page } from './documents/page'
+import { page, localeString } from './documents/page'
 import { post } from './documents/post'
+import { customer } from './documents/customers'
+import { colaborator } from './documents/colaborators'
+import { constructionGallery } from './documents/constructionGallery'
+import { siteVisit } from './documents/siteVisit'
 import {
   project,
   localizedText,
@@ -26,8 +30,13 @@ export const schemaTypes = [
   post,
   person,
   project,
+  customer,
+  colaborator,
+  constructionGallery,
+  siteVisit,
   // Objects
   button,
+  localeString,
   blockContent,
   blockContentTextOnly,
   infoSection,
