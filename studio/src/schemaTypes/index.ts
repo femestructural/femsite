@@ -3,6 +3,8 @@ import { page, localeString } from './documents/page'
 import { post } from './documents/post'
 import { customer } from './documents/customers'
 import { colaborator } from './documents/colaborators'
+import { constructionGallery } from './documents/constructionGallery'
+import { siteVisit } from './documents/siteVisit'
 import {
   project,
   localizedText,
@@ -30,6 +32,8 @@ export const schemaTypes = [
   project,
   customer,
   colaborator,
+  constructionGallery,
+  siteVisit,
   // Objects
   button,
   localeString,
