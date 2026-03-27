@@ -2086,6 +2086,14 @@
         },
         "optional": false
       },
+      "description": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "localeString"
+        },
+        "optional": true
+      },
       "slug": {
         "type": "objectAttribute",
         "value": {

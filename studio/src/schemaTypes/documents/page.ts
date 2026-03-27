@@ -38,6 +38,12 @@ export const page = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'description',
+      title: 'Descripción (SEO)',
+      type: 'localeString',
+      description: 'Esta descripción aparecerá en los resultados de búsqueda de Google.',
+    }),
+    defineField({
       name: 'slug',
       title: 'Identificador (Slug)',
       type: 'slug',

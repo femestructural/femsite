@@ -323,6 +323,7 @@ export type Page = {
   _updatedAt: string
   _rev: string
   title: LocaleString
+  description?: LocaleString
   slug?: Slug
   heading: string
   subheading?: string
