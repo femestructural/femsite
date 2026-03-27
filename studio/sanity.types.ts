@@ -161,6 +161,28 @@ export type Button = {
   link?: Link
 }
 
+export type SiteVisit = {
+  _type: 'siteVisit'
+  photoUrl?: string
+  project?: ProjectReference
+  gridSpan?: '1' | '2' | 'large'
+  caption?: LocaleString
+}
+
+export type ConstructionGallery = {
+  _id: string
+  _type: 'constructionGallery'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  visits?: Array<
+    {
+      _key: string
+    } & SiteVisit
+  >
+}
+
 export type Colaborator = {
   _id: string
   _type: 'colaborator'
@@ -632,6 +654,8 @@ export type AllSanitySchemaTypes =
   | BlockContent
   | LocaleString
   | Button
+  | SiteVisit
+  | ConstructionGallery
   | Colaborator
   | Customer
   | Settings
