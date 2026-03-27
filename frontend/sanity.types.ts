@@ -13,6 +13,28 @@
  */
 
 // Source: ../sanity.schema.json
+export type MediaItem = {
+  _type: 'mediaItem'
+  src: string
+  alt: string
+  gif?: string
+  mp4?: string
+  position: number
+}
+
+export type LocalizedParagraphArray = Array<{
+  en: string
+  es: string
+  _type: 'paragraphBlock'
+  _key: string
+}>
+
+export type LocalizedText = {
+  _type: 'localizedText'
+  en: string
+  es: string
+}
+
 export type PageReference = {
   _ref: string
   _type: 'reference'
@@ -123,6 +145,44 @@ export type Button = {
   _type: 'button'
   buttonText?: string
   link?: Link
+}
+
+export type Project = {
+  _id: string
+  _type: 'project'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: LocalizedText
+  slug: Slug
+  story?: LocalizedParagraphArray
+  category: LocalizedText
+  location?: LocalizedText
+  area?: string
+  year?: string
+  gridColumns: '1' | '2' | '3'
+  grid_variant: number
+  portfolio_image: string
+  other_projects_image: string
+  project_page_image: string
+  information_media?: Array<
+    {
+      _key: string
+    } & MediaItem
+  >
+  gallery_media: Array<
+    {
+      _key: string
+    } & MediaItem
+  >
+  model3d_url?: string
+  status: 'draft' | 'published' | 'archived'
+}
+
+export type Slug = {
+  _type: 'slug'
+  current: string
+  source?: string
 }
 
 export type Settings = {
@@ -246,12 +306,6 @@ export type Person = {
     alt?: string
     _type: 'image'
   }
-}
-
-export type Slug = {
-  _type: 'slug'
-  current: string
-  source?: string
 }
 
 export type SanityAssistInstructionTask = {
@@ -488,6 +542,9 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | MediaItem
+  | LocalizedParagraphArray
+  | LocalizedText
   | PageReference
   | PostReference
   | Link
@@ -497,6 +554,8 @@ export type AllSanitySchemaTypes =
   | BlockContentTextOnly
   | BlockContent
   | Button
+  | Project
+  | Slug
   | Settings
   | SanityImageCrop
   | SanityImageHotspot
@@ -504,7 +563,6 @@ export type AllSanitySchemaTypes =
   | PersonReference
   | Post
   | Person
-  | Slug
   | SanityAssistInstructionTask
   | SanityAssistTaskStatus
   | SanityAssistSchemaTypeAnnotations
@@ -571,6 +629,11 @@ export type SettingsQueryResult = {
     _type: 'image'
   }
 } | null
+
+// Source: sanity/lib/queries.ts
+// Variable: allCollaboratorsQuery
+// Query: *[_type == "colaborator"] | order(_updatedAt asc) {  _id,  name,  "role": role[$locale],  "description": description[$locale],  "quote": quote[$locale],  photoUrl}
+export type AllCollaboratorsQueryResult = Array<never>
 
 // Source: sanity/lib/queries.ts
 // Variable: getPageQuery
@@ -812,11 +875,176 @@ export type PagesSlugsResult = Array<{
   slug: string
 }>
 
+// Source: sanity/lib/queries.ts
+// Variable: allCustomers
+// Query: *[_type == "customer"] {     company, contact, logo    }
+export type AllCustomersResult = Array<never>
+
+// Source: sanity/lib/queries.ts
+// Variable: allProjectsQuery
+// Query: * [_type == "project" && defined(slug.current)] | order(order asc) {      _id,  _type,  _updatedAt,  "status": select(_id in path("drafts.**") => "draft", "published"),  "title": title[$locale],  "slug": slug.current,  "category": category[$locale],  "area": area,  "year": year,  "location": location[$locale],  "story": story[]{    "en": en,    "es": es  },  "portfolio_image": portfolio_image,  "other_projects_image": other_projects_image,  "project_page_image": project_page_image,  gallery_media[]{    src,    alt,    gif,    mp4,    position  },  information_media[]{    src,    alt,    gif,    mp4,    position  },  gridColumns,  grid_variant,  model3d_url,  "date": coalesce(date, _updatedAt)}
+export type AllProjectsQueryResult = Array<{
+  _id: string
+  _type: 'project'
+  _updatedAt: string
+  status: 'draft' | 'published'
+  title: Array<{
+    _type: 'localizedText'
+    en: string
+    es: string
+  }>
+  slug: string
+  category: Array<{
+    _type: 'localizedText'
+    en: string
+    es: string
+  }>
+  area: string | null
+  year: string | null
+  location: Array<{
+    _type: 'localizedText'
+    en: string
+    es: string
+  }> | null
+  story: Array<{
+    en: string
+    es: string
+  }> | null
+  portfolio_image: string
+  other_projects_image: string
+  project_page_image: string
+  gallery_media: Array<{
+    src: string
+    alt: string
+    gif: string | null
+    mp4: string | null
+    position: number
+  }>
+  information_media: Array<{
+    src: string
+    alt: string
+    gif: string | null
+    mp4: string | null
+    position: number
+  }> | null
+  gridColumns: '1' | '2' | '3'
+  grid_variant: number
+  model3d_url: string | null
+  date: string
+}>
+
+// Source: sanity/lib/queries.ts
+// Variable: moreProjectsQuery
+// Query: * [_type == "project" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc)[0...$limit] {      _id,  _type,  _updatedAt,  "status": select(_id in path("drafts.**") => "draft", "published"),  "title": title[$locale],  "slug": slug.current,  "category": category[$locale],  "area": area,  "year": year,  "location": location[$locale],  "story": story[]{    "en": en,    "es": es  },  "portfolio_image": portfolio_image,  "other_projects_image": other_projects_image,  "project_page_image": project_page_image,  gallery_media[]{    src,    alt,    gif,    mp4,    position  },  information_media[]{    src,    alt,    gif,    mp4,    position  },  gridColumns,  grid_variant,  model3d_url,  "date": coalesce(date, _updatedAt)}
+export type MoreProjectsQueryResult = Array<{
+  _id: string
+  _type: 'project'
+  _updatedAt: string
+  status: 'draft' | 'published'
+  title: Array<{
+    _type: 'localizedText'
+    en: string
+    es: string
+  }>
+  slug: string
+  category: Array<{
+    _type: 'localizedText'
+    en: string
+    es: string
+  }>
+  area: string | null
+  year: string | null
+  location: Array<{
+    _type: 'localizedText'
+    en: string
+    es: string
+  }> | null
+  story: Array<{
+    en: string
+    es: string
+  }> | null
+  portfolio_image: string
+  other_projects_image: string
+  project_page_image: string
+  gallery_media: Array<{
+    src: string
+    alt: string
+    gif: string | null
+    mp4: string | null
+    position: number
+  }>
+  information_media: Array<{
+    src: string
+    alt: string
+    gif: string | null
+    mp4: string | null
+    position: number
+  }> | null
+  gridColumns: '1' | '2' | '3'
+  grid_variant: number
+  model3d_url: string | null
+  date: string
+}>
+
+// Source: sanity/lib/queries.ts
+// Variable: projectQuery
+// Query: * [_type == "project" && slug.current == $slug][0] {      _id,  _type,  _updatedAt,  "status": select(_id in path("drafts.**") => "draft", "published"),  "title": title[$locale],  "slug": slug.current,  "category": category[$locale],  "area": area,  "year": year,  "location": location[$locale],  "story": story[]{    "en": en,    "es": es  },  "portfolio_image": portfolio_image,  "other_projects_image": other_projects_image,  "project_page_image": project_page_image,  gallery_media[]{    src,    alt,    gif,    mp4,    position  },  information_media[]{    src,    alt,    gif,    mp4,    position  },  gridColumns,  grid_variant,  model3d_url,  "date": coalesce(date, _updatedAt)}
+export type ProjectQueryResult = {
+  _id: string
+  _type: 'project'
+  _updatedAt: string
+  status: 'draft' | 'published'
+  title: Array<{
+    _type: 'localizedText'
+    en: string
+    es: string
+  }>
+  slug: string
+  category: Array<{
+    _type: 'localizedText'
+    en: string
+    es: string
+  }>
+  area: string | null
+  year: string | null
+  location: Array<{
+    _type: 'localizedText'
+    en: string
+    es: string
+  }> | null
+  story: Array<{
+    en: string
+    es: string
+  }> | null
+  portfolio_image: string
+  other_projects_image: string
+  project_page_image: string
+  gallery_media: Array<{
+    src: string
+    alt: string
+    gif: string | null
+    mp4: string | null
+    position: number
+  }>
+  information_media: Array<{
+    src: string
+    alt: string
+    gif: string | null
+    mp4: string | null
+    position: number
+  }> | null
+  gridColumns: '1' | '2' | '3'
+  grid_variant: number
+  model3d_url: string | null
+  date: string
+} | null
+
 // Query TypeMap
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult
+    '*[_type == "colaborator"] | order(_updatedAt asc) {\n  _id,\n  name,\n  "role": role[$locale],\n  "description": description[$locale],\n  "quote": quote[$locale],\n  photoUrl\n}': AllCollaboratorsQueryResult
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
     '\n  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': AllPostsQueryResult
@@ -824,5 +1052,9 @@ declare module '@sanity/client' {
     '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': PostQueryResult
     '\n  *[_type == "post" && defined(slug.current)]\n  {"slug": slug.current}\n': PostPagesSlugsResult
     '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult
+    '\n    *[_type == "customer"] {\n    \n company,\n contact,\n logo\n\n    }\n  ': AllCustomersResult
+    '\n  * [_type == "project" && defined(slug.current)] | order(order asc) {\n    \n  _id,\n  _type,\n  _updatedAt,\n  "status": select(_id in path("drafts.**") => "draft", "published"),\n  "title": title[$locale],\n  "slug": slug.current,\n  "category": category[$locale],\n  "area": area,\n  "year": year,\n  "location": location[$locale],\n  "story": story[]{\n    "en": en,\n    "es": es\n  },\n  "portfolio_image": portfolio_image,\n  "other_projects_image": other_projects_image,\n  "project_page_image": project_page_image,\n  gallery_media[]{\n    src,\n    alt,\n    gif,\n    mp4,\n    position\n  },\n  information_media[]{\n    src,\n    alt,\n    gif,\n    mp4,\n    position\n  },\n  gridColumns,\n  grid_variant,\n  model3d_url,\n  "date": coalesce(date, _updatedAt)\n\n}\n': AllProjectsQueryResult
+    '\n  * [_type == "project" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc)[0...$limit] {\n    \n  _id,\n  _type,\n  _updatedAt,\n  "status": select(_id in path("drafts.**") => "draft", "published"),\n  "title": title[$locale],\n  "slug": slug.current,\n  "category": category[$locale],\n  "area": area,\n  "year": year,\n  "location": location[$locale],\n  "story": story[]{\n    "en": en,\n    "es": es\n  },\n  "portfolio_image": portfolio_image,\n  "other_projects_image": other_projects_image,\n  "project_page_image": project_page_image,\n  gallery_media[]{\n    src,\n    alt,\n    gif,\n    mp4,\n    position\n  },\n  information_media[]{\n    src,\n    alt,\n    gif,\n    mp4,\n    position\n  },\n  gridColumns,\n  grid_variant,\n  model3d_url,\n  "date": coalesce(date, _updatedAt)\n\n}\n': MoreProjectsQueryResult
+    '\n  * [_type == "project" && slug.current == $slug][0] {\n    \n  _id,\n  _type,\n  _updatedAt,\n  "status": select(_id in path("drafts.**") => "draft", "published"),\n  "title": title[$locale],\n  "slug": slug.current,\n  "category": category[$locale],\n  "area": area,\n  "year": year,\n  "location": location[$locale],\n  "story": story[]{\n    "en": en,\n    "es": es\n  },\n  "portfolio_image": portfolio_image,\n  "other_projects_image": other_projects_image,\n  "project_page_image": project_page_image,\n  gallery_media[]{\n    src,\n    alt,\n    gif,\n    mp4,\n    position\n  },\n  information_media[]{\n    src,\n    alt,\n    gif,\n    mp4,\n    position\n  },\n  gridColumns,\n  grid_variant,\n  model3d_url,\n  "date": coalesce(date, _updatedAt)\n\n}\n': ProjectQueryResult
   }
 }

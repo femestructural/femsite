@@ -1,0 +1,115 @@
+{
+    "nav": {
+        "Inicio": "Inicio",
+        "Nosotros": "Nosotros",
+        "Portafolio": "Portafolio",
+        "Obra": "Dirección de obra",
+        "Contacto": "Contacto"
+    },
+    "HeroHome": {
+        "text_one": "innovación",
+        "text_two": "pasión",
+        "text_three": "bim",
+        "sub_one": "Soluciones inteligentes que no limitan",
+        "sub_two": "Diseñamos estructuras que acompañan",
+        "sub_three": "Ingeniería precisa sin sobrecostos"
+    },
+    "RadialMethodology": {
+        "title": "Nuestra Metodología",
+        "subtitle": "Redefinimos la manera en que conoces la ingeniería estructural",
+        "result_header": "El Resultado",
+        "result": "Estructuras eficientes, seguras, optimizadas y alineadas con la visión del proyecto",
+        "analysis": {
+            "label": "ANÁLISIS",
+            "title": "Analizamos cada proyecto desde su concepción",
+            "description": "Estudiamos en profundidad cada aspecto del proyecto para entender sus necesidades estructurales únicas."
+        },
+        "intention": {
+            "label": "INTENCIÓN",
+            "title": "Respetamos la intención arquitectónica",
+            "description": "Trabajamos en armonía con la visión del arquitecto, potenciando el diseño sin comprometer la estructura."
+        },
+        "optimization": {
+            "label": "OPTIMIZACIÓN",
+            "title": "Optimizamos sistemas y materiales",
+            "description": "Seleccionamos las soluciones más eficientes para cada situación, maximizando recursos."
+        },
+        "solutions": {
+            "label": "SOLUCIONES",
+            "title": "Buscamos el 'cómo sí', no la solución fácil",
+            "description": "Encontramos caminos creativos para hacer realidad proyectos ambiciosos."
+        }
+    },
+    "Experience": {
+        "title": "+ 10 Años de experiencia",
+        "subtitle": "logrando proyectos estructurales que dejan huella"
+    },
+    "Map": {
+        "title": "+ 200 Proyectos",
+        "subtitle": "construidos en todo el país",
+        "titleFooter": "Desarrollamos proyectos adaptandonos a:",
+        "assetOne": "Normativas locales",
+        "assetTwo": "Condiciones sísmicas",
+        "assetThree": "Sistemas constructivos"
+    },
+    "ProjectInMap": {
+        "customer": "cliente",
+        "area": "Área"
+    },
+    "CustomerSection": {
+        "title": "Empresas que confian en nosotros",
+        "subtitle": "más de 30 empresas y despachos confian en nosotros",
+        "footerTextOne": "No buscamos clientes de una sola vez,",
+        "footerTextTwo": "buscamos relaciones profesionales a largo plazo."
+    },
+    "HeroAbout": {
+        "Title": "¿Quiénes somos?",
+        "subtitle": "Somos la nueva generación de ingenieros y arquitectos, combinando experiencia, tecnología y criterio constructivo para resolver proyectos exigentes, desde la preconstrucción hasta la ejecución."
+    },
+    "HeroAboutCards": {
+        "Header": "Asesoramos desde las primeras etapas del proyecto :",
+        "TitleCardOne": "Análisis",
+        "DescriptionCardOne": "Analizamos sistemas estructurales para garantizar seguridad y eficiencia.",
+        "TitleCardTwo": "Optimización",
+        "DescriptionCardTwo": "Optimizamos materiales constructivos para tu caso específico.",
+        "TitleCardThree": "Prevención",
+        "DescriptionCardThree": "Nos anticipamos a los problemas para cuidar la inversión desde el inicio.",
+        "FooterCards": "Somos garantía de excelencia."
+    },
+    "StatsCards": {
+        "TitleOne": "Metodología BIM",
+        "TitleTwo": "Años de experiencia",
+        "TitleThree": "Proyectos concluidos",
+        "TitleFour": "m² construidos"
+    },
+    "Philosophy": {
+        "Title": "Filosofía FEM",
+        "Subtitle": "Creemos que una buena estructura no limita el diseño: lo acompaña y lo hace realidad mediante conocimiento técnico, experiencia constructiva y un proceso bien definido.",
+        "FooterText": "Ingeniería estructural que hace posible la arquitectura."
+    },
+    "Mission": {
+        "Title": "Nuestra Misión",
+        "Description": "Desarrollar ingeniería estructural precisa, eficiente y bien pensada, que permita materializar proyectos arquitectónicos complejos, optimizando recursos y brindando tranquilidad técnica a nuestros clientes durante todo el proceso."
+    },
+    "Vission": {
+        "Title": "Nuestra Visión",
+        "Description": "Consolidarnos como un despacho referente de la nueva generación de ingeniería estructural, reconocido por resolver proyectos complejos con innovación, excelencia técnica y acompañamiento constante."
+    },
+    "FooterAbout": {
+        "text": " En FEM Estructural creemos en el crecimiento profesional y económico de nuestro equipo  como base para ofrecer soluciones estructurales eficientes, innovadoras y confiables."
+    },
+    "PortfolioPage": {
+        "title": "Portafolio",
+        "subtitle": "Explora nuestros proyectos",
+        "more_projects_title": "Explora más proyectos"
+    },
+    "CTAs": {
+        "results": "Nuestros resultados",
+        "aboutUs": "Conoce más sobre nosotros",
+        "meeting": "Agendar reunión",
+        "contact": "Sigamos en contacto",
+        "contactMessage": "Hola, ¿podemos agendar una reunión para hablar de un proyecto?",
+        "Consulting": "Asesoría Personalizada",
+        "BackPortfolio" :"Volver al portafolio"
+    }
+}

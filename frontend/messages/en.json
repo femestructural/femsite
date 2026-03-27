@@ -1,0 +1,115 @@
+{
+    "nav": {
+        "Inicio": "Home",
+        "Nosotros": "About Us",
+        "Portafolio": "Portfolio",
+        "Obra": "Site Management",
+        "Contacto": "Contact"
+    },
+    "HeroHome": {
+        "text_one": "innovation",
+        "text_two": "passion",
+        "text_three": "bim",
+        "sub_one": "Smart solutions without limitations",
+        "sub_two": "We design structures that support your vision",
+        "sub_three": "Precision engineering without unnecessary costs"
+    },
+    "RadialMethodology": {
+        "title": "Our Methodology",
+        "subtitle": "We redefine the way you experience structural engineering",
+        "result_header": "The Result",
+        "result": "Efficient, safe, and optimized structures aligned with the project’s vision",
+        "analysis": {
+            "label": "ANALYSIS",
+            "title": "We analyze every project from its inception",
+            "description": "We thoroughly study every aspect of the project to understand its unique structural needs."
+        },
+        "intention": {
+            "label": "INTENT",
+            "title": "We respect the architectural intent",
+            "description": "We work in harmony with the architect’s vision, enhancing the design without compromising structural integrity."
+        },
+        "optimization": {
+            "label": "OPTIMIZATION",
+            "title": "We optimize systems and materials",
+            "description": "We select the most efficient solutions for each scenario, maximizing resources."
+        },
+        "solutions": {
+            "label": "SOLUTIONS",
+            "title": "We focus on how to make it work, not the easy way out",
+            "description": "We find creative paths to bring ambitious projects to life."
+        }
+    },
+    "Experience": {
+        "title": "10+ Years of Experience",
+        "subtitle": "delivering structural projects that leave a lasting impact"
+    },
+    "Map": {
+        "title": "+ 200 Projects",
+        "subtitle": "built across the country",
+        "titleFooter": "Our projects are developed in compliance with:",
+        "assetOne": "Local regulations",
+        "assetTwo": "Seismic conditions",
+        "assetThree": "Construction systems"
+    },
+    "ProjectInMap": {
+        "customer": "Customer",
+        "area": "Area"
+    },
+    "CustomerSection": {
+        "title": "Trusted by Leading Companies",
+        "subtitle": "Over 30 firms and practices place their trust in us",
+        "footerTextOne": "We don’t just look for one-off clients;",
+        "footerTextTwo": "we build long-term professional partnerships."
+    },
+    "HeroAbout": {
+        "Title": "Who We Are",
+        "subtitle": "We are the new generation of engineers and architects, merging experience, technology, and constructability to deliver demanding projects from pre-construction to final execution."
+    },
+    "HeroAboutCards": {
+        "Header": "Expert guidance from the earliest project stages:",
+        "TitleCardOne": "Analysis",
+        "DescriptionCardOne": "We analyze structural systems to ensure maximum safety and efficiency.",
+        "TitleCardTwo": "Optimization",
+        "DescriptionCardTwo": "We engineer and optimize construction materials tailored to your project's unique demands.",
+        "TitleCardThree": "Risk Mitigation",
+        "DescriptionCardThree": "We anticipate challenges to protect your investment from day one.",
+        "FooterCards": "Committed to engineering excellence."
+    },
+    "StatsCards": {
+        "TitleOne": "BIM Integration",
+        "TitleTwo": "Years of Experience",
+        "TitleThree": "Completed Projects",
+        "TitleFour": "sq. meters Built"
+    },
+    "Philosophy": {
+        "Title": "The FEM Philosophy",
+        "Subtitle": "We believe a great structure doesn't limit design; it elevates it and brings it to life through technical expertise, construction experience, and a streamlined process.",
+        "FooterText": "Empowering architecture through structural engineering."
+    },
+    "Mission": {
+        "Title": "Our Mission",
+        "Description": "To deliver precise, efficient, and well-conceived structural engineering that brings complex architectural projects to life, optimizing resources and providing our clients with technical peace of mind throughout the entire process."
+    },
+    "Vission": {
+        "Title": "Our Vision",
+        "Description": "To establish ourselves as a leading firm in the new generation of structural engineering, recognized for solving complex projects with innovation, technical excellence, and unwavering support."
+    },
+    "FooterAbout": {
+        "text": "At FEM Estructural, we believe that the professional and financial growth of our team is the foundation for delivering efficient, innovative, and reliable structural solutions."
+    },
+    "PortfolioPage": {
+        "title": "Portfolio",
+        "subtitle": "Explore our projects",
+        "more_projects_title": "Explore more projects"
+    },
+    "CTAs": {
+        "results": "View Our Work",
+        "aboutUs": "Discover Our Firm",
+        "meeting": "Schedule a Meeting",
+        "contact": "Get in Touch",
+        "contactMessage": "Hi, could we schedule a meeting to discuss a project?",
+        "Consulting": "Tailored Consulting",
+        "BackPortfolio": "Back to portfolio"
+    }
+}

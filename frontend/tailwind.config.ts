@@ -1,4 +1,4 @@
-import type {Config} from 'tailwindcss'
+import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
 
 export default {
@@ -95,8 +95,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)'],
-        mono: ['var(--font-ibm-plex-mono)'],
+        lato: ['var(---font-lato)'],
+        sans: ['var(--font-josefin-sans)'],
       },
     },
   },

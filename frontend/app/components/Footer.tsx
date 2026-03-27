@@ -1,27 +1,71 @@
-export default function Footer() {
+import ButtonLink from "./ButtonLnk"
+import { icons } from "@/public/icons/react-icons"
+// import { linkWp } from "@/src/navigation"
+import FacebookIcon from "@/public/icons/facebook"
+import InstagramIcon from "@/public/icons/instagram"
+import LinkedinIcon from "@/public/icons/linkedin"
+import LangSwitcher from './LangSwitcher'
+import { getTranslations } from "next-intl/server"
+import Button from "./Button"
+import Link from "next/link"
+
+export async function Footer() {
+
+  const translate = await getTranslations('CTAs');
+
+  const pohone = '525577828470'
+  const message = translate('contactMessage')
+
+  const formatMessage = (msg: string) => `https://wa.me/${pohone}?text=${encodeURIComponent(msg)}`
+
   return (
-    <footer className="bg-gray-50 relative">
-      <div className="absolute inset-0 bg-[url(/images/tile-grid-black.png)] bg-size-[17px] opacity-20 bg-position-[0_1]" />
-      <div className="container relative">
-        <div className="flex flex-col items-center py-28 lg:flex-row">
-          <h3 className="mb-10 text-center text-4xl font-mono leading-tight tracking-tighter lg:mb-0 lg:w-1/2 lg:pr-4 lg:text-left lg:text-2xl">
-            Built with Sanity + Next.js.
-          </h3>
-          <div className="flex flex-col gap-3 items-center justify-center lg:w-1/2 lg:flex-row lg:pl-4">
-            <a
-              href="https://github.com/sanity-io/sanity-template-nextjs-clean"
-              className="rounded-full flex gap-2 font-mono whitespace-nowrap items-center bg-black hover:bg-blue focus:bg-blue py-3 px-6 text-white transition-colors duration-200"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View on GitHub
-            </a>
-            <a href="https://nextjs.org/docs" className="mx-3 hover:underline font-mono">
-              Read Next.js Documentation
-            </a>
-          </div>
-        </div>
+    <footer className="flex flex-col gap-10 bg-[var(--primary)] w-full px-10 py-20" >
+
+      <div className="flex flex-col gap-5 w-full items-center md:items-start" >
+        <span className="font-semibold text-2xl text-[var(--header-text)]" >{translate('contact')}</span>
+        <Button className="border border-1 border-white" >
+          <Link
+            target={'_blank'}
+            rel={'noopener noreferrer'}
+            className="flex flex-row items-center gap-2" href={formatMessage(message)} >
+            <span>{translate('meeting')}</span>
+            <icons.whatsapp />
+          </Link>
+        </Button>
       </div>
+
+      <div className="flex flex-col gap-5 w-full items-center md:items-end " >
+        <div className='flex flex-row items-center gap-3 w-fit px-5 '>
+          <a
+            href='https://www.facebook.com/femestructural'
+            target='_blank'
+          >
+            <div className='size-5'>
+              <FacebookIcon />
+            </div>
+          </a>
+          <a
+            href='https://www.instagram.com/femestructural.mx/'
+            target='_blank'
+          >
+            <div className='size-5'>
+              <InstagramIcon />
+            </div>
+          </a>
+          <a
+            href='https://www.linkedin.com/company/femestructural/'
+            target='_blank'
+          >
+            <div className='size-5'>
+              <LinkedinIcon />
+            </div>
+          </a>
+
+          <LangSwitcher />
+        </div>
+        <span className="text-[var(--header-text)]" >contacto@femestructural.com.mx</span>
+      </div>
+
     </footer>
   )
 }
