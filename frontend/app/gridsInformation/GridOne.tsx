@@ -20,7 +20,7 @@ export const GridOne: React.FC<{ media: any[], story: LocalizedParagraphArray | 
         <section className='grid grid-cols-1 md:grid-cols-4 grid-rows-[repeat(12, 200px)] gap-5 p-4 mb-5 ' >
 
             {/* INFORMATION TEXT HEADER */}
-            <div className='grid col-span-4 row-start-1 xl:col-span-2 xl:row-start-1 xl:row-end-2 items-center min-h-[200px]' >
+            <div className='grid col-span-4 row-start-1 xl:col-span-2 xl:row-start-1 xl:row-end-2 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4' >
                         <p className='text-sm lg:text-xl font-semibold'>
@@ -105,7 +105,7 @@ export const GridOne: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             </div>
 
             {/* INFORMATION TEXT FOOTER */}
-            <div className='grid col-span-4 row-start-6 lg:row-start-4 xl:row-start-5 items-center min-h-[200px]' >
+            <div className='grid col-span-4 row-start-6 lg:row-start-4 xl:row-start-5 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
                         <p className='text-sm lg:text-xl font-semibold max-w-[800px] mx-auto text-center' >
