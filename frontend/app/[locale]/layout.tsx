@@ -3,20 +3,16 @@ import { Locale } from 'next-intl'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { getMessages } from 'next-intl/server'
-import { Inter, IBM_Plex_Mono } from 'next/font/google'
 import { Lato, Josefin_Sans } from 'next/font/google'
 import { draftMode } from 'next/headers'
-import { toPlainText } from 'next-sanity'
 import { VisualEditing } from 'next-sanity/visual-editing'
 import { Toaster } from 'sonner'
-
 import DraftModeToast from '@/app/components/DraftModeToast'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
-import * as demo from '@/sanity/lib/demo'
 import { NextIntlClientProvider } from 'next-intl'
 import { sanityFetch, SanityLive } from '@/sanity/lib/live'
-import { settingsQuery } from '@/sanity/lib/queries'
+import { metadataPageQuery, settingsQuery } from '@/sanity/lib/queries'
 import { resolveMetadataImage } from '@/sanity/lib/utils'
 import { handleError } from '@/app/client-utils'
 import ClientProvider from '../providers/ClientProvider'
@@ -27,44 +23,70 @@ import { AppProvider } from './provider'
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
  */
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "FEM Estructural",
+  "url": "https://femestructural.com.mx",
+  "telephone": "+523312150893",
+  "openingHours": "Mo-Su 00:00-23:59",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Guadalajara",
+    "addressRegion": "Jalisco",
+    "addressCountry": "MX"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude":  20.6727978,
+    "longitude": -103.4156747
+  },
+  "sameAs": [
+    "https://maps.google.com/?cid=TU_CID"
+  ]
+}
+
 interface PageProps {
   params: Promise<{ slug?: string, locale: string }>
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const resolvedParams = await params;
 
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
-    // Metadata should never contain stega
-    stega: false,
+  const { locale } = await params
+  const slug = 'inicio'
+
+  const { data } = await sanityFetch({
+    query: metadataPageQuery,
+    params: { slug, locale },
+    stega: false
   })
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-  const title = settings?.title[resolvedParams?.locale as 'en' | 'es'] || demo.title
-  const description = settings?.description[resolvedParams?.locale as 'en' | 'es'] || demo.description
+  const { page, settings } = data
+
 
   const ogImage = resolveMetadataImage(settings?.ogImage)
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+
   return {
-    metadataBase: new URL(baseUrl),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
     title: {
-      template: `%s | ${title}`,
-      default: title,
+      template: `%s | ${page?.title || 'FEM'}`,
+      default: 'FEM',
     },
-    description: toPlainText(description),
+    description: page?.description || 'Femsite',
     openGraph: {
-      description: toPlainText(description),
-      url: `${baseUrl}/${resolvedParams.locale === 'en' ? 'en/' : ''}`,
-      siteName: title,
+      description: page?.description || '',
+      url: `${baseUrl}/${locale === 'en' ? 'en/' : ''}`,
+      siteName: page?.description || '',
       images: [ogImage],
-      locale: resolvedParams.locale === 'es' ? 'es_ES' : 'en_US',
+      locale: locale === 'es' ? 'es_ES' : 'en_US',
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: title,
-      description: toPlainText(description),
+      title: page?.title || 'FEM',
+      description: page?.description || '',
       images: [ogImage.url],
     },
     icons: {
@@ -97,6 +119,12 @@ export default async function RootLayout({ children, params }: { children: React
     <html lang={locale}
       className={`${lato.variable} ${josefin_sans.variable} scroll-smooth`}
     >
+      <head>
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body>
         <AppProvider>
           <NextIntlClientProvider messages={messages} >

@@ -4,7 +4,7 @@ import { IoCloseCircle } from "react-icons/io5";
 import { FaCirclePlus } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaFolderPlus } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
+import { FaLink, FaLinkedin } from "react-icons/fa";
 import { GrInfo } from "react-icons/gr";
 import { GrUpdate } from "react-icons/gr";
 import { MdNotes } from "react-icons/md";
@@ -34,4 +34,5 @@ export const icons = {
     location: CiLocationOn,
     ruler: CiRuler,
     building_user: FaBuildingUser,
+    arrow_forward: FaLink
 }

@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import type { Project } from '@/sanity.types';
 import { GridOne } from '../gridsInformation/GridOne';
 import { GridTwo } from '../gridsInformation/GridTwo';
 import { GridThree } from '../gridsInformation/GridThree';
@@ -8,7 +7,7 @@ import { GridFour } from '../gridsInformation/GridFour';
 import { GridFive } from '../gridsInformation/GridFive';
 import { GridSix } from '../gridsInformation/GridSix';
 
-export const ProjectGridInfo: React.FC<{ project: Project, locale: string }> = ({ project, locale }) => {
+export const ProjectGridInfo: React.FC<{ project: any, locale: string }> = ({ project, locale }) => {
     const { grid_variant, information_media, story } = project;
 
     if (!grid_variant) return null;

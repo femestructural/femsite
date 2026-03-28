@@ -8,7 +8,7 @@ import FacebookIcon from '../../public/icons/facebook'
 import InstagramIcon from '../../public/icons/instagram'
 import LinkedinIcon from '../../public/icons/linkedin'
 import ButtonLink from './ButtonLnk'
-import styles from './Header.module.css'
+import { HeaderMobile } from './HeaderMobile'
 
 interface Props {
   locale: string
@@ -36,11 +36,11 @@ export const Header: FC<Props> = ({ locale }) => {
           {/* Desktop Navigation */}
           <div className='hidden lg:flex flex-row items-center justify-end lg:justify-between gap-3 w-full'>
             <nav className='hidden lg:flex mx-10 lg:inline-flex gap-5 text-[var(--header-text)]'>
-              <ButtonLink href="/" text={t('Inicio')} className='hover:cursor-pointer' />
-              <ButtonLink href="/nosotros" text={t('Nosotros')} className='hover:cursor-pointer' />
-              <ButtonLink href="/portafolio" text={t('Portafolio')} className='hover:cursor-pointer' />
-              <ButtonLink href="/direccion-de-obra" text={t('Obra')} className='hover:cursor-pointer' />
-              <ButtonLink href="/contacto" text={t('Contacto')} className='hover:cursor-pointer' />
+              <ButtonLink isHeaderStyle={true} href="/" text={t('Inicio')} className='py-0 hover:cursor-pointer' />
+              <ButtonLink isHeaderStyle={true} href="/nosotros" text={t('Nosotros')} className='py-0 hover:cursor-pointer' />
+              <ButtonLink isHeaderStyle={true} href="/portafolio" text={t('Portafolio')} className='py-0 hover:cursor-pointer' />
+              <ButtonLink isHeaderStyle={true} href="/direccion-de-obra" text={t('Obra')} className='py-0! hover:cursor-pointer' />
+              <ButtonLink isHeaderStyle={true} href="/contacto" text={t('Contacto')} className='py-0 hover:cursor-pointer' />
             </nav>
             {/* <ThemeSwitch /> */}
 
@@ -73,6 +73,8 @@ export const Header: FC<Props> = ({ locale }) => {
               <LangSwitcher />
             </div>
           </div>
+
+          <HeaderMobile />
 
         </div>
       </div>

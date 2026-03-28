@@ -4,13 +4,13 @@ import gsap from 'gsap';
 import ImageWithLoader from './ImageWithLoader';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import { Colaborator } from '@/sanity.types';
+import { AllCollaboratorsQueryResult } from '@/sanity.types';
 
 gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
     title?: string;
-    items: Colaborator[];
+    items: AllCollaboratorsQueryResult;
     locale: string;
 };
 
@@ -83,25 +83,27 @@ export default function HorizontalTeam({
                         <div
                             key={member._id}
                             onClick={() => setOpenId(openId === member._id ? null : member._id)}
-                            className="group flex h-full w-[85dvw] lg:w-[clamp(460px,50vw,500px)] flex-col justify-start bg-white shadow-lg border border-zinc-200 shrink-0 snap-center"
+                            className="group flex h-full w-[85dvw] lg:w-[clamp(460px,50vw,500px)] flex-col justify-start bg-white shadow-lg border border-zinc-200 shrink-0 snap-center hover:cursor-pointer"
                         >
                             <div className="relative h-[92%] w-full">
-                                <ImageWithLoader
-                                    fill={true}
-                                    src={member.photoUrl}
-                                    alt={member.name}
-                                    className="object-cover object-fit"
-                                />
+                                {member.photoUrl && (
+                                    <ImageWithLoader
+                                        fill={true}
+                                        src={member.photoUrl}
+                                        alt={member.name}
+                                        className="object-cover object-fit"
+                                    />
+                                )}
 
                                 <div className={`absolute p-8 inset-0 transition-all duration-500 ${openId === member._id ? 'bg-black/80' : 'group-hover:bg-black/80 lg:opacity-0 lg:group-hover:opacity-100'}`} >
                                     <div className={`text-white flex flex-col justify-end h-full gap-4 transition-all duration-300 ${openId === member._id ? 'opacity-100' : 'hidden lg:flex'}`} >
-                                        <span className='font-semibold' >{member.role[locale as 'en' | 'es'] || ''}</span>
+                                        <span className='font-semibold' >{member.role || ''}</span>
                                         <p className='leading-relaxed whitespace-pre-line line-clamp-6 lg:line-clamp-12'>
-                                            {member.description[locale as 'en' | 'es'] || ''}
+                                            {member?.description}
                                         </p>
                                         {member.quote && (
                                             <span className='font-serif italic pl-4'>
-                                                "{member.quote[locale as 'en' | 'es']}"
+                                                {member?.quote}
                                             </span>
                                         )}
                                     </div>

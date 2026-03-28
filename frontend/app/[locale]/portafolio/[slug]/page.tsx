@@ -25,7 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         params: { slug, locale }
     })
 
-    const { project, settings } = data
+    const project = data?.project
+    const settings = data?.settings
 
     if (!project) return { title: 'Proyecto no encontrado' }
 
@@ -126,7 +127,7 @@ export default async function ProjectPage({ params }: Props) {
 
                 <ButtonLink
                     href={`/portafolio`}
-                    className='flex lg:hidden absolute top-5 right-8 text-white z-3'
+                    className='flex lg:hidden absolute top-20 right-2 text-white z-3 border-0!'
                 >
                     <icons.arrow_back size={20} />
                 </ButtonLink>
@@ -160,7 +161,7 @@ export default async function ProjectPage({ params }: Props) {
                     <Suspense
                         fallback={<div className="w-full h-40 bg-zinc-100 animate-pulse" />}
                     >
-                        {await MoreProjects({ skip: project._id, locale, limit: 3 })}
+                        <MoreProjects skip={project._id} locale={locale} limit={3} />
                     </Suspense>
                 </section>
             </div>

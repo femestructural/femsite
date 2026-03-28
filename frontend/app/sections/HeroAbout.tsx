@@ -15,7 +15,7 @@ export async function HeroAbout() {
 
 
             <div
-                className='bg-gradient-to-t from-[var(--primary)] to-black/80'
+                className='bg-gradient-to-t from-[var(--primary)] to-black/20'
                 style={{
                     position: 'absolute',
                     top: 0,
@@ -29,7 +29,7 @@ export async function HeroAbout() {
             <ImageWithLoader
                 fill={true}
                 className='object-cover z-1 absolute'
-                src="https://res.cloudinary.com/ditwfi7c9/image/upload/q_auto/v1771135382/abstract-glass-window-roof-architecture-exterior_hjrdmv.jpg"
+                src="https://res.cloudinary.com/ditwfi7c9/image/upload/v1774612762/DSC04107_Copy_Copy_t9fptx.jpg"
                 alt="Hero Image"
             />
 

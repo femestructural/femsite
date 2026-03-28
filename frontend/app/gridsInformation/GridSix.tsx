@@ -26,7 +26,7 @@ export const GridSix: React.FC<{ media: any[], story: LocalizedParagraphArray | 
 
             <div className='grid col-span-1 md:col-span-4 lg:col-span-2 md:row-start-1 lg:col-end-3 items-center py-5 ' >
                 <Fade triggerOnce duration={1000} >
-                    <div className='flex flex-col gap-5 w-full ' >
+                    <div className='flex flex-col gap-5 w-full' >
                         <article className='flex flex-col w-full lg:max-w-[450px] items-start md:items-center xl:items-start gap-5 px-4' >
                             <p className='text-sm lg:text-xl font-semibold' >
                                 {story?.[0]?.[locale as 'en' | 'es'] || ''}
@@ -138,7 +138,7 @@ export const GridSix: React.FC<{ media: any[], story: LocalizedParagraphArray | 
                 </Fade>
             </div>
 
-            <div className='grid col-span-1 md:col-span-4 lg:col-span-2 row-start-7 md:row-start-8 lg:row-start-6 bg-white ' >
+            <div className='grid col-span-1 md:col-span-4 lg:col-span-2 row-start-8 md:row-start-8 lg:row-start-6 bg-white ' >
                 <Fade triggerOnce duration={1000} >
                     <ImageWithLoader
                         height={400}
@@ -166,7 +166,7 @@ export const GridSix: React.FC<{ media: any[], story: LocalizedParagraphArray | 
                 </Fade>
             </div>
 
-            <div className='grid col-span-1 md:col-span-4 items-center lg:col-span-1 row-start-8 md:row-start-10 lg:row-start-6 bg-white ' >
+            <div className='grid col-span-1 md:col-span-4 items-center lg:col-span-1 row-start-10 md:row-start-10 lg:row-start-6 bg-white ' >
                 <div className='flex flex-col items-center justify-center gap-10 h-full py-10 lg:py-0' >
                     <Fade triggerOnce duration={1000} >
                         <ImageWithLoader

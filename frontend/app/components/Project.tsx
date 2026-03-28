@@ -49,7 +49,7 @@ export const Project = ({ project, gridMode = true }: { project: any, gridMode?:
                     className='object-cover w-full grayscale transition-all duration-500 group-hover:grayscale-0'
                     classNameContainer='rounded-sm absolute h-[calc(100%-110px)] left-0 top-0 right-0 bottom-0'
                 />
-                <div className="p-4 absolute bottom-0 flex flex-col justify-center h-[110px] w-full bg-white border-t border-gray-100" >
+                <div className="p-4 absolute left-0 bottom-0 flex flex-col justify-center h-[110px] w-full bg-white border-t border-gray-100" >
                     <div className="flex flex-col gap-4 h-[110px] justify-center ">
                         <span className="text-xs tracking-widest uppercase">
                             {category}

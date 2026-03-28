@@ -103,11 +103,65 @@
         "subtitle": "Explore our projects",
         "more_projects_title": "Explore more projects"
     },
+    "FormContact": {
+        "title_project": "Your project",
+        "name_label": "Full name",
+        "email_label": "Email",
+        "phone_label": "Phone number (optional)",
+        "name_placeholder": "Your name",
+        "company_label": "Company / Firm",
+        "company_optional": "(optional)",
+        "company_placeholder": "Company or firm",
+        "project_type_label": "Project type",
+        "select_placeholder": "Select",
+        "project_stage_label": "Project stage",
+        "description_label": "Tell us briefly about your project",
+        "description_placeholder": "What do you want to achieve and what makes it challenging?",
+        "priorities_title": "Priorities",
+        "priorities_question": "What is most important to you in this project?",
+        "priorities_help": "Select all that apply",
+        "contact_title": "Contact",
+        "contact_question": "How do you prefer to be contacted?",
+        "info_limit": "We handle a limited number of projects to guarantee quality, technical follow-up, and direct attention in each development.",
+        "submit_button": "Send information",
+        "sending_message": "Sending message...",
+        "success_title": "Message sent",
+        "success_message": "Thank you for contacting us. Our team will review your request and respond within 24 hours.",
+        "success_button": "Send another message",
+        "projectTypes": {
+            "residencial": "Residential",
+            "vertical": "Vertical",
+            "industrial": "Industrial",
+            "comercial": "Commercial",
+            "otro": "Other"
+        },
+        "projectStages": {
+            "idea": "Idea / Preliminary project",
+            "arquitectonico": "Advanced architectural project",
+            "desarrollo": "Project in development",
+            "obra": "Project under construction"
+        },
+        "priorities": {
+            "costos": "Optimize costs from the design stage",
+            "arquitectura": "Respect the architectural proposal",
+            "complejo": "Solve a complex structural project",
+            "errores": "Avoid errors and cost overruns on site",
+            "acompanamiento": "Technical support during construction"
+        },
+        "contactMethods": {
+            "llamada": "Call",
+            "whatsapp": "WhatsApp",
+            "videollamada": "Video call",
+            "presencial": "In-person meeting"
+        }
+    },
     "CTAs": {
         "results": "View Our Work",
         "aboutUs": "Discover Our Firm",
         "meeting": "Schedule a Meeting",
         "contact": "Get in Touch",
+        "explore_gallery": "View gallery",
+        "explore_projects": "View portfolio",
         "contactMessage": "Hi, could we schedule a meeting to discuss a project?",
         "Consulting": "Tailored Consulting",
         "BackPortfolio": "Back to portfolio"

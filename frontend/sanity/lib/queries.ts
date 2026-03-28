@@ -5,9 +5,9 @@ export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 export const allCollaboratorsQuery = defineQuery(`*[_type == "colaborator"] | order(_updatedAt asc) {
   _id,
   name,
-  "role": role[$locale],
-  "description": description[$locale],
-  "quote": quote[$locale],
+  "role": select($locale == "es" => role.es, role.en),
+  "description": select($locale == "es" => description.es, description.en),
+  "quote": select($locale == "es" => quote.es, quote.en),
   photoUrl
 }`)
 
@@ -26,12 +26,12 @@ export const projectFields = /* groq */ `
   _type,
   _updatedAt,
   "status": select(_id in path("drafts.**") => "draft", "published"),
-  "title": title[$locale],
+  "title": select($locale == "es" => title.es, title.en),
   "slug": slug.current,
-  "category": category[$locale],
+  "category": select($locale == "es" => category.es, category.en),
   "area": area,
   "year": year,
-  "location": location[$locale],
+  "location": select($locale == "es" => location.es, location.en),
   "story": story[]{
     "en": en,
     "es": es
@@ -77,31 +77,33 @@ const customersFields = /* groq */`
  logo
 `
 // Consulta GROQ combinada: Traemos el proyecto Y la configuración global al mismo tiempo
-export const metadataProjectQuery = /* groq */ `{
+export const metadataProjectQuery = defineQuery(`{
     "project": *[_type == "project" && slug.current == $slug][0] {
-      "title": title[$locale],
+      "title": select($locale == "es" => title.es, title.en),
       "story": story[]{
         "en": en,
         "es": es
       },
+      "ogImage": ogImage,
+      "portfolio_image": portfolio_image
     },
     "settings": *[_type == "settings"][0] {
-      "siteTitle": title[$locale],
+      "siteTitle": select($locale == "es" => title.es, title.en),
       ogImage
     }
-  }`
+  }`)
 
-export const metadataPageQuery = /* groq */ `{
+export const metadataPageQuery = defineQuery(`{
     "page": *[_type == "page" && slug.current == $slug][0] {
-      "title": title[$locale],
-      "description": description[$locale],
+      "title": select($locale == "es" => title.es, title.en),
+      "description": select($locale == "es" => description.es, description.en),
       "ogImage": ogImage
     },
     "settings": *[_type == "settings"][0] {
-      "siteTitle": title[$locale],
+      "siteTitle": select($locale == "es" => title.es, title.en),
       ogImage
     }
-  }`
+  }`)
 
 export const getPageQuery = defineQuery(`
   *[_type == 'page' && slug.current == $slug][0]{
@@ -197,4 +199,15 @@ export const projectQuery = defineQuery(`
   * [_type == "project" && slug.current == $slug][0] {
     ${projectFields}
 }
+`)
+
+export const siteVisitsQuery = defineQuery(`
+  *[_type == "constructionGallery"][0].visits[$start...$end]{
+    "id": _key,
+    photoUrl,
+    gridSpan,
+    "projectTitle": select($locale == "es" => project->title.es, project->title.en),
+    "projectSlug": project->slug.current,
+    "caption": select($locale == "es" => caption.es, caption.en)
+  }
 `)

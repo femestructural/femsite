@@ -1,9 +1,21 @@
+'use client'
+
 import { useState, useEffect } from "react"
+import { useTranslations, useLocale } from 'next-intl'
+import { Link, usePathname } from '@/i18n/routing'
+import LogoIcon from '@/public/icons/logo'
+import FacebookIcon from '@/public/icons/facebook'
+import InstagramIcon from '@/public/icons/instagram'
+import LinkedinIcon from '@/public/icons/linkedin'
+import LangSwitcher from './LangSwitcher'
+import ButtonLink from './ButtonLnk'
 
 export function HeaderMobile() {
-
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [isClosing, setIsClosing] = useState(false)
+    const locale = useLocale()
+    const pathname = usePathname()
+    const t = useTranslations('nav')
 
     const toggleMobileMenu = () => {
         if (isMobileMenuOpen) {
@@ -38,118 +50,104 @@ export function HeaderMobile() {
     }, [isMobileMenuOpen])
 
     return (
-
-        isMobileMenuOpen && (
-            <div
-                className={`fixed top-0 left-0 w-full h-screen bg-[var(--primary)] z-40 lg:hidden ${isClosing ? 'animate-slide-up' : 'animate-slide-down'
-                    }`}
+        <>
+            {/* Mobile Burger Button */}
+            <button
+                onClick={toggleMobileMenu}
+                className="lg:hidden flex flex-col items-center justify-center w-8 h-8 text-[var(--header-text)] focus:outline-none z-50 relative"
+                aria-label="Toggle mobile menu"
             >
+                <div className={`w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
+                <div className={`w-6 h-0.5 bg-current my-1 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
+                <div className={`w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+            </button>
 
-                {/* Mobile Header - Logo y botón de cierre fijos */}
-                <div className='absolute top-0 left-0 right-0 flex flex-row items-center justify-between p-4 bg-[var(--primary)] z-50'>
-                    <Link lang={locale} href='/' onClick={closeMobileMenu}>
-                        <div className='flex flex-row items-center scale-90'>
-                            <LogoIcon />
+            {isMobileMenuOpen && (
+                <div
+                    className={`fixed top-0 left-0 w-full h-screen bg-[var(--primary)] z-40 lg:hidden ${isClosing ? 'animate-slide-up' : 'animate-slide-down'
+                        }`}
+                >
+
+                    {/* Mobile Header - Logo y botón de cierre fijos */}
+                    <div className='absolute top-0 left-0 right-0 flex flex-row items-center justify-between p-4 bg-[var(--primary)] z-50'>
+                        <Link href='/' onClick={closeMobileMenu}>
+                            <div className='flex flex-row items-center scale-90'>
+                                <LogoIcon />
+                            </div>
+                        </Link>
+                    </div>
+
+                    {/* Mobile Navigation */}
+                    <nav className='flex flex-col items-start pl-10 justify-center h-full text-[var(--header-text)] space-y-8 pt-20'>
+                        <ButtonLink
+                            href="/"
+                            text={t('Inicio')}
+                            className="text-2xl font-medium"
+                            callback={closeMobileMenu}
+                        />
+                        <ButtonLink
+                            href="/nosotros"
+                            text={t('Nosotros')}
+                            className="text-2xl font-medium"
+                            callback={closeMobileMenu}
+                        />
+                        <ButtonLink
+                            href="/portafolio"
+                            text={t('Portafolio')}
+                            className="text-2xl font-medium"
+                            callback={closeMobileMenu}
+                        />
+                        <ButtonLink
+                            href="/direccion-de-obra"
+                            text={t('Obra')}
+                            className="text-2xl font-medium"
+                            callback={closeMobileMenu}
+                        />
+                        <ButtonLink
+                            href="/contacto"
+                            text={t('Contacto')}
+                            className="text-2xl font-medium"
+                            callback={closeMobileMenu}
+                        />
+
+                        {/* Mobile Social Links */}
+                        <div className='flex flex-row items-center gap-6 mt-8'>
+                            <a
+                                href='https://www.facebook.com/femestructural'
+                                target='_blank'
+                                className='text-[var(--header-text)] hover:opacity-75 transition-opacity duration-200'
+                            >
+                                <div className='size-8'>
+                                    <FacebookIcon />
+                                </div>
+                            </a>
+                            <a
+                                href='https://www.instagram.com/femestructural.mx/'
+                                target='_blank'
+                                className='text-[var(--header-text)] hover:opacity-75 transition-opacity duration-200'
+                            >
+                                <div className='size-8'>
+                                    <InstagramIcon />
+                                </div>
+                            </a>
+                            <a
+                                href='https://www.linkedin.com/company/femestructural/'
+                                target='_blank'
+                                className='text-[var(--header-text)] hover:opacity-75 transition-opacity duration-200'
+                            >
+                                <div className='size-8'>
+                                    <LinkedinIcon />
+                                </div>
+                            </a>
                         </div>
-                    </Link>
 
-                    {/* Mobile Close Button */}
-                    <button
-                        onClick={closeMobileMenu}
-                        className='flex flex-col items-center justify-center w-8 h-8 text-[var(--header-text)] focus:outline-none'
-                        aria-label="Close mobile menu"
-                    >
-                        <div className="w-6 h-0.5 bg-current rotate-45 translate-y-1.5"></div>
-                        <div className="w-6 h-0.5 bg-current -rotate-45 -translate-y-1.5"></div>
-                    </button>
+                        {/* Mobile Language Switcher */}
+                        <div className='mt-6'>
+                            <LangSwitcher />
+                        </div>
+                    </nav>
                 </div>
-
-                {/* Mobile Navigation */}
-                <nav className='flex flex-col items-start pl-10 justify-center h-full text-[var(--header-text)] space-y-8 pt-20'>
-                    <Link
-                        lang={locale}
-                        href={`/`}
-                        onClick={closeMobileMenu}
-                        className={`text-2xl font-medium transition-colors duration-200 ${isActive('/') ? 'font-bold border-b-2 border-[var(--header-text)]' : 'hover:opacity-75'
-                            }`}
-                    >
-                        {t('Inicio')}
-                    </Link>
-                    <Link
-                        lang={locale}
-                        href={`/nosotros`}
-                        onClick={closeMobileMenu}
-                        className={`text-2xl font-medium transition-colors duration-200 ${isActive('/nosotros') ? 'font-bold border-b-2 border-[var(--header-text)]' : 'hover:opacity-75'
-                            }`}
-                    >
-                        {t('Nosotros')}
-                    </Link>
-                    <Link
-                        lang={locale}
-                        href={`/portafolio`}
-                        onClick={closeMobileMenu}
-                        className={`text-2xl font-medium transition-colors duration-200 ${isActive('/portafolio') ? 'font-bold border-b-2 border-[var(--header-text)]' : 'hover:opacity-75'
-                            }`}
-                    >
-                        {t('Portafolio')}
-                    </Link>
-                    <Link
-                        lang={locale}
-                        href={`/direccion-de-obra`}
-                        onClick={closeMobileMenu}
-                        className={`text-2xl font-medium transition-colors duration-200 ${isActive('/direccion-de-obra') ? 'font-bold border-b-2 border-[var(--header-text)]' : 'hover:opacity-75'
-                            }`}
-                    >
-                        {t('Dirección_de_obra')}
-                    </Link>
-                    <Link
-                        lang={locale}
-                        href={`/contacto`}
-                        onClick={closeMobileMenu}
-                        className={`text-2xl font-medium transition-colors duration-200 ${isActive('/contacto') ? 'font-bold border-b-2 border-[var(--header-text)]' : 'hover:opacity-75'
-                            }`}
-                    >
-                        {t('Contacto')}
-                    </Link>
-
-                    {/* Mobile Social Links */}
-                    <div className='flex flex-row items-center gap-6 mt-8'>
-                        <a
-                            href='https://github.com/yahyaparvar/nextjs-template'
-                            target='_blank'
-                            className='text-[var(--header-text)] hover:opacity-75 transition-opacity duration-200'
-                        >
-                            <div className='size-8'>
-                                <FacebookIcon />
-                            </div>
-                        </a>
-                        <a
-                            href='https://github.com/yahyaparvar/nextjs-template'
-                            target='_blank'
-                            className='text-[var(--header-text)] hover:opacity-75 transition-opacity duration-200'
-                        >
-                            <div className='size-8'>
-                                <InstagramIcon />
-                            </div>
-                        </a>
-                        <a
-                            href='https://github.com/yahyaparvar/nextjs-template'
-                            target='_blank'
-                            className='text-[var(--header-text)] hover:opacity-75 transition-opacity duration-200'
-                        >
-                            <div className='size-8'>
-                                <LinkedinIcon />
-                            </div>
-                        </a>
-                    </div>
-
-                    {/* Mobile Language Switcher */}
-                    <div className='mt-6'>
-                        <LangSwitcher />
-                    </div>
-                </nav>
-            </div>
-        )
-
+            )}
+        </>
     )
 }

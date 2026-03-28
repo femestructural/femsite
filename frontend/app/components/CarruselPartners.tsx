@@ -2,17 +2,18 @@
 import React, { useRef } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
-
-interface Partner {
-    company: string
-    contact?: string
-    logo: string
-}
+import { AllCustomersResult, } from "@/sanity.types"
 
 interface CarruselCustomersProps {
-    partners: Partner[]
+    partners: AllCustomersResult
     speed?: number // Segundos por ciclo
     pauseOnHover?: boolean
+}
+
+interface Customer {
+    company: string
+    contact: string | null
+    logo: string | null
 }
 
 export const CarruselCustomers: React.FC<CarruselCustomersProps> = ({
@@ -90,7 +91,7 @@ export const CarruselCustomers: React.FC<CarruselCustomersProps> = ({
                                         className="block w-full h-full flex items-center justify-center"
                                         aria-label={`Visitar sitio web de ${partner.company}`}
                                     >
-                                        <LogoImage partner={partner} />
+                                        {partner.logo && <LogoImage partner={partner} />}
                                     </a>
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center">
@@ -107,11 +108,11 @@ export const CarruselCustomers: React.FC<CarruselCustomersProps> = ({
 }
 
 // Sub-componente para limpiar el JSX principal
-const LogoImage = ({ partner }: { partner: Partner }) => (
+const LogoImage = ({ partner }: { partner: Customer }) => (
     <>
         <img
-            src={partner.logo}
-            alt={`Logo de ${partner.company}`}
+            src={partner?.logo || ''}
+            alt={`Logo de ${partner?.company}`}
             className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
             loading="lazy"
             draggable="false"

@@ -103,13 +103,67 @@
         "subtitle": "Explora nuestros proyectos",
         "more_projects_title": "Explora más proyectos"
     },
+    "FormContact": {
+        "title_project": "Tu proyecto",
+        "name_label": "Nombre completo",
+        "email_label": "Correo electrónico",
+        "phone_label": "Teléfono (opcional)",
+        "name_placeholder": "Tu nombre",
+        "company_label": "Empresa / Despacho",
+        "company_optional": "(opcional)",
+        "company_placeholder": "Empresa o despacho",
+        "project_type_label": "Tipo de proyecto",
+        "select_placeholder": "Seleccionar",
+        "project_stage_label": "Etapa del proyecto",
+        "description_label": "Cuéntanos brevemente sobre tu proyecto",
+        "description_placeholder": "¿Qué quieres lograr y qué lo hace retador?",
+        "priorities_title": "Prioridades",
+        "priorities_question": "¿Qué es lo más importante para ti en este proyecto?",
+        "priorities_help": "Selecciona todas las que apliquen",
+        "contact_title": "Contacto",
+        "contact_question": "¿Cómo prefieres que te contactemos?",
+        "info_limit": "Atendemos un número limitado de proyectos para garantizar calidad, seguimiento técnico y atención directa en cada desarrollo.",
+        "submit_button": "Enviar información",
+        "sending_message": "Enviando mensaje...",
+        "success_title": "Mensaje enviado",
+        "success_message": "Gracias por contactarnos. Nuestro equipo revisará tu solicitud y te responderá en menos de 24 horas.",
+        "success_button": "Enviar otro mensaje",
+        "projectTypes": {
+            "residencial": "Residencial",
+            "vertical": "Vertical",
+            "industrial": "Industrial",
+            "comercial": "Comercial",
+            "otro": "Otro"
+        },
+        "projectStages": {
+            "idea": "Idea / Anteproyecto",
+            "arquitectonico": "Proyecto arquitectónico avanzado",
+            "desarrollo": "Proyecto en desarrollo",
+            "obra": "Proyecto en obra"
+        },
+        "priorities": {
+            "costos": "Optimizar costos desde el diseño",
+            "arquitectura": "Respetar la propuesta arquitectónica",
+            "complejo": "Resolver un proyecto estructural complejo",
+            "errores": "Evitar errores y sobrecostos en obra",
+            "acompanamiento": "Acompañamiento técnico durante la construcción"
+        },
+        "contactMethods": {
+            "llamada": "Llamada",
+            "whatsapp": "WhatsApp",
+            "videollamada": "Videollamada",
+            "presencial": "Reunión presencial"
+        }
+    },
     "CTAs": {
         "results": "Nuestros resultados",
         "aboutUs": "Conoce más sobre nosotros",
         "meeting": "Agendar reunión",
         "contact": "Sigamos en contacto",
+        "explore_gallery": "Ver galería",
+        "explore_projects": "Ver portafolio",
         "contactMessage": "Hola, ¿podemos agendar una reunión para hablar de un proyecto?",
         "Consulting": "Asesoría Personalizada",
-        "BackPortfolio" :"Volver al portafolio"
+        "BackPortfolio": "Volver al portafolio"
     }
 }
