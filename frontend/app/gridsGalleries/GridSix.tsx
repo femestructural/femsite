@@ -21,7 +21,7 @@ export const GridSix: React.FC<{ media: any[], story: LocalizedParagraphArray | 
         <section className='grid grid-cols-1 md:grid-cols-3 grid-rows-[repeat(12, 200px)] gap-5 p-4 mb-5 ' >
 
             {/* TEXT 1 */}
-            <div className='grid col-span-1 md:col-span-3 items-center min-h-[200px]' >
+            <div className='grid col-span-1 md:col-span-3 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 w-full' >
                         <p className='text-sm lg:text-xl font-semibold text-center max-w-[700px] mx-auto ' >

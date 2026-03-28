@@ -23,7 +23,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
         <section className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 grid-rows-[repeat(12, 200px)] gap-5 p-4 mb-5' >
 
             {/* TEXT 1 */}
-            <div className='grid col-span-1 col-span-1 md:col-span-3 lg:col-span-1 row-start-1 items-center min-h-[200px]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-1 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4' >
                         <p className='text-sm lg:text-xl font-semibold' >
@@ -99,7 +99,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
 
 
             {/* TEXT 2 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-5 md:row-start-5 lg:row-start-5 justify-center items-center min-h-[200px]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-5 md:row-start-5 lg:row-start-5 justify-center items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 text-center ' >
                         <p className='text-sm lg:text-xl font-semibold max-w-[730px]' >
@@ -125,7 +125,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
             </div>
 
             {/* MEDIA 5 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-6 md:row-start-6 lg:row-start-6 bg-zinc-200 max-h-[90dvh]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-7 md:row-start-7 lg:row-start-6 bg-zinc-200 max-h-[90dvh]' >
                 <Fade triggerOnce duration={1000} >
                     <ImageWithLoader
                         height={400}
@@ -140,7 +140,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
             </div>
 
             {/* MEDIA 6 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-7 md:row-start-7 lg:row-start-7 lg:col-start-1 bg-zinc-200 h-fit lg:h-[90dvh]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-8 md:row-start-8 lg:row-start-7 lg:col-start-1 bg-zinc-200 h-fit h-full' >
                 <Fade triggerOnce duration={1000} >
                     <ImageWithLoader
                         height={400}
@@ -156,7 +156,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
 
 
             {/* MEDIA 7 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-8 md:row-start-8 lg:row-start-7 bg-zinc-200 ' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-9 md:row-start-9 lg:row-start-7 bg-zinc-200 ' >
                 <Fade triggerOnce duration={1000} >
                     <ImageWithLoader
                         height={400}
@@ -171,7 +171,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
             </div>
 
             {/* MEDIA 8 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-8 md:row-start-8 lg:row-start-7 bg-zinc-200 ' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-10 gap-5 md:row-start-10 lg:row-start-7 ' >
                 <Fade triggerOnce duration={1000} >
                     <ImageWithLoader
                         height={400}
@@ -198,39 +198,8 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
             </div>
 
 
-            {/* MEDIA 8 */}
-            {/* <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-10 md:row-start-10 lg:row-start-8 bg-zinc-200 ' >
-                <Fade triggerOnce duration={1000} >
-                    <ImageWithLoader
-                        height={400}
-                        width={400}
-                        WithContainer
-                        classNameContainer='flex h-full w-full items-center justify-center  bg-white'
-                        className='lg:h-[70%] w-full object-contain object-center'
-                        src={media_eight?.src}
-                        alt={media_eight?.alt}
-                    />
-                </Fade>
-            </div> */}
-
-
-            {/* MEDIA 9 */}
-            {/* <div className='grid col-span-1 md:col-span-3 lg:col-span-1 row-start-11 md:row-start-11 lg:row-start-8 bg-zinc-200 ' >
-                <Fade triggerOnce duration={1000} >
-                    <ImageWithLoader
-                        height={400}
-                        width={400}
-                        WithContainer
-                        classNameContainer='flex h-full w-full items-center justify-center  bg-white'
-                        className='lg:h-[70%] w-full object-contain object-center'
-                        src={media_nine?.src}
-                        alt={media_nine?.alt}
-                    />
-                </Fade>
-            </div> */}
-
             {/* MEDIA 10 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-12 md:row-start-12 lg:row-start-9 bg-zinc-200 ' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-11 md:row-start-11 lg:row-start-8 bg-zinc-200 ' >
                 <Fade triggerOnce duration={1000} >
                     <ImageWithLoader
                         height={400}
@@ -245,7 +214,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
             </div>
 
             {/* TEXT 3 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-13 md:row-start-13 lg:row-start-10 justify-center row-start-10 items-center min-h-[100px]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-12 md:row-start-12 lg:row-start-9 justify-center items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
                         <p className='text-sm lg:text-xl font-semibold text-center max-w-[700px] mx-auto ' >
@@ -256,7 +225,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
             </div>
 
             {/* MEDIA 2 VIDEO */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 bg-zinc-200 row-start-14 md:row-start-14 lg:row-start-11 min-h-[400px] max-h-[95dvh]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 bg-zinc-200 row-start-13 md:row-start-13 lg:row-start-10 min-h-[400px] max-h-[95dvh]' >
                 <Fade triggerOnce duration={1000} >
                     <StreamingVideo
                         videoUrl={media_eleven?.mp4 || ''}

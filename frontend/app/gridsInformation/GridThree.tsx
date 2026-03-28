@@ -121,7 +121,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             </div>
 
             {/* TEXT 3 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-7 md:row-start-7 lg:row-start-5 items-center min-h-[200px]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-7 md:row-start-7 lg:row-start-5 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col  items-center gap-5 px-4' >
                         <p className='text-sm lg:text-xl tracking-widest text-center max-w-[1000px]' >
@@ -207,7 +207,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             </div>
 
             {/* TEXT 4 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 items-center row-start-13 md:row-start-13 lg:row-start-8 min-h-[200px]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 items-center row-start-13 md:row-start-13 lg:row-start-8 py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4 ' >
                         <p className='text-sm lg:text-xl tracking-widest font-semibold text-center max-w-[1200px] ' >
@@ -228,7 +228,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             </div>
 
             {/* TEXT 5 */}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 items-center row-start-15 md:row-start-15 lg:row-start-10 min-h-[200px]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 items-center row-start-15 md:row-start-15 lg:row-start-10 py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
                         <p className='text-sm lg:text-xl tracking-widest font-semibold text-center max-w-[1200px] ' >

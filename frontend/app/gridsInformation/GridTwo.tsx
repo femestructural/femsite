@@ -22,7 +22,7 @@ export const GridTwo: React.FC<{ media: any[], story: LocalizedParagraphArray | 
         <section className='grid grid-cols-1 md:grid-cols-3 grid-rows-[repeat(18, 200px)] gap-5 p-4 mb-5 ' >
 
             {/* TEXT 1*/}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 md:row-start-1 items-center min-h-[200px]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 md:row-start-1 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <div className='flex flex-col gap-5 xl:flex-row items-center justify-between w-full ' >
                         <article className='flex flex-col w-full xl:w-[400px] items-start md:items-center xl:items-start gap-5 px-4' >
@@ -96,7 +96,7 @@ export const GridTwo: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             </div>
 
             {/* TEXT 2*/}
-            <div className='grid col-span-1 md:col-span-3 row-start-5 md:row-start-4 lg:row-start-4 items-center min-h-[200px]' >
+            <div className='grid col-span-1 md:col-span-3 row-start-5 md:row-start-4 lg:row-start-4 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
                         <p className='text-sm lg:text-xl font-semibold text-center tracking-widest max-w-[1100px]' >
@@ -203,7 +203,7 @@ export const GridTwo: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             </div>
 
             {/* TEXT 4*/}
-            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-13 md:row-start-13 lg:row-start-9 items-center min-h-[200px]' >
+            <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-13 md:row-start-13 lg:row-start-9 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
                         <p className='text-sm lg:text-xl  font-semibold text-center tracking-widest max-w-[1100px]' >

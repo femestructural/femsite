@@ -99,7 +99,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             )}
 
             {/* TEXT 2 */}
-            <div className='grid col-span-2 items-center min-h-[200px]' >
+            <div className='grid col-span-2 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
                         <p className='text-sm lg:text-xl font-semibold text-center tracking-widest max-w-[1100px] leading-15' >
@@ -185,7 +185,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             )}
 
             {/* TEXT 3 */}
-            <div className='grid col-span-2 items-center min-h-[200px]' >
+            <div className='grid col-span-2 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
                         <p className='text-sm lg:text-xl font-semibold text-center tracking-widest max-w-[1100px] leading-15' >
