@@ -4,18 +4,18 @@ import ResolvedLink from '@/app/components/ResolvedLink'
 import PortableText from '@/app/components/PortableText'
 import Image from '@/app/components/SanityImage'
 import {stegaClean} from '@sanity/client/stega'
-import {ExtractPageBuilderType} from '@/sanity/lib/types'
+import {ExtractPageBuilderType, DereferencedLink} from '@/sanity/lib/types'
 
 type CtaProps = {
   block: ExtractPageBuilderType<'callToAction'>
   index: number
   // Needed if you want to createDataAttributes to do non-text overlays in Presentation (Visual Editing)
-  pageType: string
-  pageId: string
+  pageType?: string
+  pageId?: string
 }
 
 export default function CTA({block}: CtaProps) {
-  const {heading, eyebrow, body = [], button, image, theme, contentAlignment} = block
+  const {heading, eyebrow, body, button, image, theme, contentAlignment} = block
 
   const isDark = theme === 'dark'
   const isImageFirst = stegaClean(contentAlignment) === 'imageFirst'
@@ -38,14 +38,14 @@ export default function CTA({block}: CtaProps) {
             )}
             {body && (
               <div className="lg:text-left">
-                <PortableText value={body as PortableTextBlock[]} className="dark:prose-invert" />
+                <PortableText value={body as unknown as PortableTextBlock[]} className="dark:prose-invert" />
               </div>
             )}
 
             {button?.buttonText && button?.link && (
               <div className="flex mt-4">
                 <ResolvedLink
-                  link={button?.link}
+                  link={button?.link as DereferencedLink}
                   className="rounded-full flex gap-2 font-mono text-sm whitespace-nowrap items-center bg-black dark:bg-white hover:bg-blue focus:bg-blue py-3 px-6 text-white dark:text-black dark:hover:text-white transition-colors duration-200"
                 >
                   {button?.buttonText}

@@ -1,45 +1,338 @@
-@import 'tailwindcss';
-
-@plugin "@tailwindcss/typography";
+@import "tailwindcss";
 
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-medium tracking-tight;
+  :root {
+    --primary: #000000;
+    --secondary: #097fa5;
+    --background: #F7F7F7;
+    --background-secondary: #c8dde3;
+    --button: #000000;
+    --button-text: #fff;
+    --header-text: #fff;
+    --text-secondary: #3c3c3c;
+    --dropdown: #ffffff;
+    --dropdown-hover: #3A3A3A;
+    --button-secondary: #e7e7e7;
+    --selected: #ffffff;
+    --logo-shadow: #020202a8;
+    --image-shadow: #02020279;
+    --logo-body: #00d8fe;
+    --span-bg: linear-gradient(to right, #4e4e9e, #097fa5, #3e87ed);
   }
-}
 
-@utility container {
-  margin: 0 auto;
-  padding: 0 2rem;
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --shadow-layer: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+  --color-primary: #000000;
+  --font-family-lato: var(---font-lato);
+  --font-family-sans: var(--font-josefin-sans);
+}
 
-  --color-framework: #000;
-  --color-black: #0b0b0b;
-  --color-white: #fff;
-  --color-brand: #f50;
-  --color-blue: #0052ff;
-  --color-yellow: #cdea19;
-  --color-gray-50: #f6f6f8;
-  --color-gray-100: #eeeef1;
-  --color-gray-200: #e3e4e8;
-  --color-gray-300: #bbbdc9;
-  --color-gray-400: #9499ad;
-  --color-gray-500: #727892;
-  --color-gray-600: #515870;
-  --color-gray-700: #383d51;
-  --color-gray-800: #252837;
-  --color-gray-900: #1b1d27;
-  --color-gray-950: #13141b;
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  border-radius: 0px;
+  padding: 20px;
+  color: var(--primary);
+  width: 350px;
+  height: 280px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    gap:10px;
+  }
+}
 
-  --default-transition-duration: 250ms;
+.card-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: var(--background);
+  padding: 10px 0px  10px;
+}
+
+/* Horizontal Scroll Team Styles - Optimized */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
+
+/* Vertical Scroll Hide - Para scroll vertical invisible */
+.vertical-scrollbar-hide {
+  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.vertical-scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
+
+/* Aplicar scroll invisible globalmente al body */
+html {
+  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari y Opera */
+}
+
+body {
+  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari y Opera */
+}
+
+/* Aplicar a todos los elementos con scroll */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Para contenedores específicos con scroll vertical */
+.container-no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: auto;
+}
+
+.container-no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.team-card {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width, transform;
+  cursor: pointer;
+  backface-visibility: hidden; /* Mejor rendimiento en transformaciones */
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Optimización adicional para scroll suave */
+.horizontal-scroll-section {
+  transform: translateZ(0); /* Force hardware acceleration */
+  overflow: hidden;
+}
+
+/* Imagen con gradiente overlay - Optimizado para SEO */
+.team-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: block; /* Importante para picture element */
+}
+
+.team-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block; /* Elimina espacio en blanco debajo de img */
+}
+
+.team-card:hover .team-image {
+  transform: scale(1.05);
+}
+
+.team-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.856) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Asegurar que figcaption esté por encima del overlay */
+figcaption {
+  z-index: 2 !important;
+  transition: opacity 0.3s ease;
+}
+
+
+
+/* Gradiente alternativo - más sutil */
+.team-image-overlay-subtle {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* Gradiente de colores */
+.team-image-overlay-colorful {
+  background: linear-gradient(
+    45deg,
+    rgba(16, 123, 165, 0.6) 0%,
+    rgba(0, 216, 254, 0.4) 100%
+  );
+}
+
+@layer base {
+  *:lang(ar) {
+    font-family: var(--font-lato) !important;
+  }
+  *:lang(fa) {
+    font-family: var(--font-josefin-sans) !important;
+  }
+  
+  /* body {
+    @apply bg-background text-primary;
+  } */
+}
+
+/* Transición suave para cambios de tema */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efectos adicionales para elementos interactivos */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+}
+
+/* Mejoras para el loader */
+.nextjs-toploader {
+  backdrop-filter: blur(8px);
+}
+
+/* Suavizado de bordes en imágenes */
+.image {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Transiciones suaves para picture */
+.picture {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* picture:hover {
+  transform: scale(1.02);
+} */
+
+.image:hover {
+  filter: brightness(1.05);
+}
+
+/* Clase para filtro de escala de grises con hover a color */
+.img-filter-scalegray {
+  filter: grayscale(100%) contrast(1.4);
+  transition: filter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.img-filter-scalegray:hover {
+  filter: grayscale(0%) contrast(1.1);
+  cursor: pointer;
+}
+
+/* Animación para el menú móvil */
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-in-out;
+}
+
+
+.navLink {
+  position: relative;
+  transition: color 0.5s ease;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--header-text);
+  transition: width 0.5s ease;
+}
+
+.navLink:hover::before {
+  width: 100%;
+}
+
+.navLink:hover {
+  color: var(--header-text);
+}
+
+/* styles/globals.css */
+.loaderWrap {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0b0b0b; /* ajusta */
+  display: grid;
+  place-items: center;
+}
+
+.loaderCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loaderText {
+  margin-top: 14px;
+  letter-spacing: 0.28em;
+  font-size: 12px;
+  color: #ffffff;
+  opacity: 0; /* gsap controla */
 }

@@ -10,10 +10,38 @@ const builder = imageUrlBuilder({
   dataset: dataset || '',
 })
 
+// URL por defecto si no hay imagen (puedes cambiarla aquí)
+export const DEFAULT_OG_IMAGE = 'https://res.cloudinary.com/ditwfi7c9/image/upload/v1741548171/og-default_femsite.jpg'
+
 // Create an image URL builder using the client
 // Export a function that can be used to get image URLs
 function urlForImage(source: SanityImageSource) {
   return builder.image(source)
+}
+
+/**
+ * Resuelve una imagen para OpenGraph, ya sea de Sanity o una URL directa (Cloudinary)
+ */
+export function resolveMetadataImage(
+  image?: any | null,
+  width = 1200,
+  height = 630,
+) {
+  if (!image) return { url: DEFAULT_OG_IMAGE, width, height }
+
+  // Si es un string, asumimos que es una URL directa (Cloudinary)
+  if (typeof image === 'string') {
+    return { url: image, width, height }
+  }
+
+  // Si es un objeto de imagen de Sanity
+  try {
+    const url = urlForImage(image)?.width(width).height(height).fit('crop').url()
+    if (!url) return { url: DEFAULT_OG_IMAGE, width, height }
+    return {url, alt: (image as {alt?: string})?.alt || '', width, height}
+  } catch {
+    return { url: DEFAULT_OG_IMAGE, width, height }
+  }
 }
 
 export function resolveOpenGraphImage(
@@ -26,6 +54,8 @@ export function resolveOpenGraphImage(
   if (!url) return
   return {url, alt: (image as {alt?: string})?.alt || '', width, height}
 }
+
+// ... rest of the file ...
 
 // Depending on the type of link, we need to fetch the corresponding page, post, or URL.  Otherwise return null.
 export function linkResolver(link: Link | DereferencedLink | undefined) {

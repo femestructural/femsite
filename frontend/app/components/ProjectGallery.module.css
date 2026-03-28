@@ -1,0 +1,34 @@
+.customGallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+.customGallery :global(.ReactGridGallery_tile) {
+    height: auto !important;
+    flex: none !important;
+    margin: 4px !important;
+}
+
+.customGallery :global(.ReactGridGallery_tile img) {
+    height: 700px !important;
+    width: auto !important;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.customGallery :global(.ReactGridGallery) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Forzar el tamaño de las imágenes */
+.customGallery :global(.ReactGridGallery_tile-viewport) {
+    height: 700px !important;
+}
+
+.customGallery :global(.ReactGridGallery_tile-overlay) {
+    height: 700px !important;
+}
