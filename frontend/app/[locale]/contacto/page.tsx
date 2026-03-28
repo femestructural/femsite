@@ -65,7 +65,7 @@ export default async function DireccionDeObraPage({ params }: { params: Promise<
 
     const translate = await getTranslations('CTAs');
 
-    const pohone = '525577828470'
+    const pohone = '523312150893'
     const message = translate('contactMessage')
 
     const formatMessage = (msg: string) => `https://wa.me/${pohone}?text=${encodeURIComponent(msg)}`
