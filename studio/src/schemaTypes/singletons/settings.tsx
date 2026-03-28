@@ -259,12 +259,20 @@ export const settings = defineType({
           type: 'string',
           validation: (rule) => {
             return rule.custom((alt, context) => {
-              const document = context.document as Settings
-              // Verifica si hay imagen pero falta el alt en español (el principal)
-              if (document?.ogImage?.asset?._ref && (!alt || !(alt as any).es)) {
-                return 'Spanish Alt text is required when an image is present'
+              // Obtenemos el documento completo para ver si hay una imagen
+              const document = context.document as Settings;
+
+              // Verificamos si existe la referencia a la imagen
+              const hasImage = !!document?.ogImage?.asset?._ref;
+
+              // Nueva lógica: Si hay imagen, pero el texto alternativo ('alt') 
+              // está vacío o no es texto, marcamos el error.
+              if (hasImage && (!alt || typeof alt !== 'string' || alt.trim() === '')) {
+                return 'El texto alternativo es obligatorio para el SEO cuando hay una imagen.';
               }
-              return true
+
+              // Si todo está bien, pasamos la validación
+              return true;
             })
           },
         }),
