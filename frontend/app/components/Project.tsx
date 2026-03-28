@@ -46,7 +46,7 @@ export const Project = ({ project, gridMode = true }: { project: any, gridMode?:
                     fill={true}
                     alt={title || 'Project image'}
                     src={gridMode ? portfolio_image : (other_projects_image || portfolio_image)}
-                    className='object-cover w-full grayscale transition-all duration-500 group-hover:grayscale-0'
+                    className='object-cover w-full lg:grayscale transition-all duration-500 group-hover:grayscale-0'
                     classNameContainer='rounded-sm absolute h-[calc(100%-110px)] left-0 top-0 right-0 bottom-0'
                 />
                 <div className="p-4 absolute left-0 bottom-0 flex flex-col justify-center h-[110px] w-full bg-white border-t border-gray-100" >

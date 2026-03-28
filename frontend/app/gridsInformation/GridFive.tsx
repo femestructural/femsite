@@ -75,7 +75,7 @@ export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray |
                         width={400}
                         WithContainer
                         classNameContainer='h-full lg:h-[80dvh] w-full flex items-center justify-center'
-                        className='w-full h-full object-cover object-center'
+                        className='w-full h-full object-fill object-center'
                         src={media_two?.src}
                         alt={media_two?.alt}
                     />
