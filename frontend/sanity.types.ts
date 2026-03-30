@@ -203,6 +203,7 @@ export type Colaborator = {
     en?: string
   }
   photoUrl?: string
+  order?: number
 }
 
 export type Customer = {
@@ -762,7 +763,7 @@ export type SettingsQueryResult = {
 
 // Source: sanity/lib/queries.ts
 // Variable: allCollaboratorsQuery
-// Query: *[_type == "colaborator"] | order(_updatedAt asc) {  _id,  name,  "role": select($locale == "es" => role.es, role.en),  "description": select($locale == "es" => description.es, description.en),  "quote": select($locale == "es" => quote.es, quote.en),  photoUrl}
+// Query: *[_type == "colaborator"] | order(order asc) {  _id,  name,  "role": select($locale == "es" => role.es, role.en),  "description": select($locale == "es" => description.es, description.en),  "quote": select($locale == "es" => quote.es, quote.en),  photoUrl}
 export type AllCollaboratorsQueryResult = Array<{
   _id: string
   name: string
@@ -1212,7 +1213,7 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult
-    '*[_type == "colaborator"] | order(_updatedAt asc) {\n  _id,\n  name,\n  "role": select($locale == "es" => role.es, role.en),\n  "description": select($locale == "es" => description.es, description.en),\n  "quote": select($locale == "es" => quote.es, quote.en),\n  photoUrl\n}': AllCollaboratorsQueryResult
+    '*[_type == "colaborator"] | order(order asc) {\n  _id,\n  name,\n  "role": select($locale == "es" => role.es, role.en),\n  "description": select($locale == "es" => description.es, description.en),\n  "quote": select($locale == "es" => quote.es, quote.en),\n  photoUrl\n}': AllCollaboratorsQueryResult
     '{\n    "project": *[_type == "project" && slug.current == $slug][0] {\n      "title": select($locale == "es" => title.es, title.en),\n      "story": story[]{\n        "en": en,\n        "es": es\n      },\n      "ogImage": ogImage,\n      "portfolio_image": portfolio_image\n    },\n    "settings": *[_type == "settings"][0] {\n      "siteTitle": select($locale == "es" => title.es, title.en),\n      ogImage\n    }\n  }': MetadataProjectQueryResult
     '{\n    "page": *[_type == "page" && slug.current == $slug][0] {\n      "title": select($locale == "es" => title.es, title.en),\n      "description": select($locale == "es" => description.es, description.en),\n      "ogImage": ogImage\n    },\n    "settings": *[_type == "settings"][0] {\n      "siteTitle": select($locale == "es" => title.es, title.en),\n      ogImage\n    }\n  }': MetadataPageQueryResult
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
