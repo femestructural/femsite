@@ -68,7 +68,22 @@ export const colaborator = defineType({
                 input: UrlImagePreview
             }
         }),
+        defineField({
+            name: 'order',
+            title: 'Order',
+            type: 'number',
+            initialValue: 0,
+        }),
 
+    ],
+    orderings: [
+        {
+            title: 'Order',
+            name: 'orderAsc',
+            by: [
+                { field: 'order', direction: 'asc' }
+            ]
+        },
     ],
     // Configuración del listado visual en Sanity Studio
     preview: {
@@ -76,11 +91,12 @@ export const colaborator = defineType({
             title: 'name',
             subtitle: 'role.es', // Muestra el puesto en español como subtítulo
             imageUrl: 'photoUrl',
+            order: 'order',
         },
         prepare(selection) {
-            const { title, subtitle, imageUrl } = selection
+            const { title, subtitle, imageUrl, order } = selection
             return {
-                title: title,
+                title: `${order ?? 0} - ${title}`,
                 subtitle: subtitle,
                 // Si hay URL, dibujamos la imagen; si no, Sanity muestra el UserIcon por defecto
                 media: imageUrl ? React.createElement('img', { src: imageUrl, alt: title, style: { objectFit: 'cover' } }) : null

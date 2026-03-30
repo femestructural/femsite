@@ -203,6 +203,7 @@ export type Colaborator = {
     en?: string
   }
   photoUrl?: string
+  order?: number
 }
 
 export type Customer = {

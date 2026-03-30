@@ -2,7 +2,7 @@ import { defineQuery } from 'next-sanity'
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 
-export const allCollaboratorsQuery = defineQuery(`*[_type == "colaborator"] | order(_updatedAt asc) {
+export const allCollaboratorsQuery = defineQuery(`*[_type == "colaborator"] | order(order asc) {
   _id,
   name,
   "role": select($locale == "es" => role.es, role.en),
