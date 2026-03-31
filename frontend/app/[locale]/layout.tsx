@@ -17,6 +17,7 @@ import { resolveMetadataImage } from '@/sanity/lib/utils'
 import { handleError } from '@/app/client-utils'
 import ClientProvider from '../providers/ClientProvider'
 import { AppProvider } from './provider'
+import { Analytics } from "@vercel/analytics/next"
 
 /**
  * Generate metadata for the page.
@@ -38,7 +39,7 @@ const structuredData = {
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude":  20.6727978,
+    "latitude": 20.6727978,
     "longitude": -103.4156747
   },
   "sameAs": [
@@ -126,6 +127,7 @@ export default async function RootLayout({ children, params }: { children: React
         />
       </head>
       <body>
+        <Analytics />
         <AppProvider>
           <NextIntlClientProvider messages={messages} >
             <section className="min-h-screen">

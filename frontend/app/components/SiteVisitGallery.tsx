@@ -87,7 +87,7 @@ export default function SiteVisitGallery({ initialData, locale, fetchMore }: Pro
                     return (
                         <div
                             key={item.id}
-                            className={`relative group overflow-hidden bg-zinc-100 border-1 border-zinc-300  ${gridSpanClass}`}
+                            className={`relative group overflow-hidden bg-zinc-100  ${gridSpanClass}`}
                         >
                             {item.photoUrl && (
                                 <ImageWithLoader
