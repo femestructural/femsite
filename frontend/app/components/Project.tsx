@@ -39,7 +39,7 @@ export const Project = ({ project, gridMode = true }: { project: any, gridMode?:
     return (
         <ButtonLink
             href={`/portafolio/${slug}`}
-            className={`group relative flex flex-col overflow-hidden min-h-[70dvh] h-[70dvh] max-h-[70dvh] lg:h-full shadow-md border-1 border-zinc-300 ${columnSpan}`}
+            className={`group relative flex flex-col overflow-hidden min-h-[70dvh] h-[70dvh] max-h-[70dvh] lg:h-full ${columnSpan}`}
         >
             <>
                 <ImageWithLoader
