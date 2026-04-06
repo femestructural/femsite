@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import ImageWithLoader from '../components/ImageWithLoader';
 import StreamingVideo from '../components/StreamingVideo';
 import { Fade } from "react-awesome-reveal";
@@ -8,6 +9,7 @@ import { LocalizedParagraphArray } from '@/sanity.types';
 
 export const GridOne: React.FC<{ media: any[], story: LocalizedParagraphArray | undefined, locale: string }> = ({ media, story, locale }) => {
 
+    const translate = useTranslations('ProjectPage');
 
     const media_one = media?.[0];
     const media_two = media?.[1];
@@ -23,20 +25,20 @@ export const GridOne: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             <div className='grid col-span-4 row-start-1 xl:col-span-2 xl:row-start-1 xl:row-end-2 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold'>
-                            {story?.[0]?.[locale as 'en' | 'es'] || ''}
+                        <p className='text-sm lg:text-xl '>
+                            <span className='font-semibold' >{translate('Design')} —</span> {story?.[0]?.[locale as 'en' | 'es'] || ''}
                         </p>
 
-                        <p className='text-sm lg:text-xl font-semibold'>
-                            {story?.[1]?.[locale as 'en' | 'es'] || ''}
+                        <p className='text-sm lg:text-xl '>
+                            <span className='font-semibold' >{translate('Area')} —</span> {story?.[1]?.[locale as 'en' | 'es'] || ''}
                         </p>
 
-                        <p className='text-sm lg:text-xl font-semibold'>
-                            {story?.[2]?.[locale as 'en' | 'es'] || ''}
+                        <p className='text-sm lg:text-xl'>
+                            <span className='font-semibold' >{translate('System')} —</span> {story?.[2]?.[locale as 'en' | 'es'] || ''}
                         </p>
 
-                        <p className='text-sm lg:text-xl font-semibold'>
-                            {story?.[3]?.[locale as 'en' | 'es'] || ''}
+                        <p className='text-sm lg:text-xl'>
+                            <span className='font-semibold' >{translate('Result')} —</span> {story?.[3]?.[locale as 'en' | 'es'] || ''}
                         </p>
 
                     </article>
@@ -108,7 +110,7 @@ export const GridOne: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             <div className='grid col-span-4 row-start-6 lg:row-start-4 xl:row-start-5 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold max-w-[800px] mx-auto text-center' >
+                        <p className='text-sm lg:text-xl font-light max-w-[800px] mx-auto text-center' >
                             {story?.[4]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -128,7 +130,7 @@ export const GridOne: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             <div className='grid col-span-4 row-start-8 lg:row-start-6 xl:row-start-7 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold max-w-[700px] mx-auto text-center' >
+                        <p className='text-sm lg:text-xl font-light max-w-[700px] mx-auto text-center' >
                             {story?.[5]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>

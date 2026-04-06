@@ -155,6 +155,12 @@
             "presencial": "In-person meeting"
         }
     },
+    "ProjectPage": {
+        "Design": "Architectural Design",
+        "Area": "Built Area",
+        "System": "Structural System",
+        "Result": "Result"
+    },
     "CTAs": {
         "results": "View Our Work",
         "aboutUs": "Discover Our Firm",

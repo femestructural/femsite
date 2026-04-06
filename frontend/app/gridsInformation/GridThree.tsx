@@ -1,11 +1,14 @@
 'use client';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import ImageWithLoader from '../components/ImageWithLoader';
 import StreamingVideo from '../components/StreamingVideo';
 import { Fade } from "react-awesome-reveal";
 import { LocalizedParagraphArray } from '@/sanity.types';
 
 export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray | undefined, locale: string }> = ({ media, story, locale }) => {
+
+    const translate = useTranslations('ProjectPage');
 
     const media_one = media?.[0];
     const media_two = media?.[1];
@@ -29,7 +32,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
 
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 w-full ' >
-                        <p className='text-sm lg:text-xl font-semibold text-center tracking-widest' >
+                        <p className='text-sm lg:text-xl font-light text-center tracking-widest' >
                             {story?.[0]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -57,19 +60,19 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 tracking-widest' >
                         <p className='text-sm lg:text-lg' >
-                            {story?.[1]?.[locale as 'en' | 'es'] || ''}
+                            <span className='font-semibold' >{translate('Design')} —</span>{story?.[1]?.[locale as 'en' | 'es'] || ''}
                         </p>
 
                         <p className='text-sm lg:text-lg' >
-                            {story?.[2]?.[locale as 'en' | 'es'] || ''}
+                            <span className='font-semibold' >{translate('Area')} —</span>{story?.[2]?.[locale as 'en' | 'es'] || ''}
                         </p>
 
                         <p className='text-sm lg:text-lg' >
-                            {story?.[3]?.[locale as 'en' | 'es'] || ''}
+                            <span className='font-semibold' >{translate('System')} —</span>{story?.[3]?.[locale as 'en' | 'es'] || ''}
                         </p>
 
                         <p className='text-sm lg:text-lg' >
-                            {story?.[4]?.[locale as 'en' | 'es'] || ''}
+                            <span className='font-semibold' >{translate('Result')} —</span>{story?.[4]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
                 </Fade>
@@ -124,7 +127,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-7 md:row-start-7 lg:row-start-5 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col  items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl tracking-widest text-center max-w-[1000px]' >
+                        <p className='text-sm lg:text-xl font-light tracking-widest text-center max-w-[1000px]' >
                             {story?.[5]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -210,7 +213,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             <div className='grid col-span-1 md:col-span-3 lg:col-span-3 items-center row-start-13 md:row-start-13 lg:row-start-8 py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4 ' >
-                        <p className='text-sm lg:text-xl tracking-widest font-semibold text-center max-w-[1200px] ' >
+                        <p className='text-sm lg:text-xl tracking-widest font-light text-center max-w-[1200px] ' >
                             {story?.[6]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -231,7 +234,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             <div className='grid col-span-1 md:col-span-3 lg:col-span-3 items-center row-start-15 md:row-start-15 lg:row-start-10 py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl tracking-widest font-semibold text-center max-w-[1200px] ' >
+                        <p className='text-sm lg:text-xl tracking-widest font-light text-center max-w-[1200px] ' >
                             {story?.[7]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>

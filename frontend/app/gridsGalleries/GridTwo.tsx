@@ -23,7 +23,7 @@ export const GridTwo: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             <div className='grid col-span-1 md:col-span-3 row-start-1 md:row-start-1 min-h-[80px]' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold text-center tracking-widest max-w-[1100px]' >
+                        <p className='text-sm lg:text-xl font-light text-center tracking-widest max-w-[1100px]' >
                             {story?.[10]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -78,7 +78,7 @@ export const GridTwo: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             <div className='grid col-span-1 md:col-span-3 row-start-5 md:row-start-4 min-h-[80px]' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold text-center tracking-widest max-w-[1100px]' >
+                        <p className='text-sm lg:text-xl font-light text-center tracking-widest max-w-[1100px]' >
                             {story?.[11]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -133,7 +133,7 @@ export const GridTwo: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             <div className='grid col-span-1 md:col-span-3 row-start-8 md:row-start-7 py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold text-center tracking-widest max-w-[1100px]' >
+                        <p className='text-sm lg:text-xl font-light text-center tracking-widest max-w-[1100px]' >
                             {story?.[12]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>

@@ -23,7 +23,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             <div className='grid col-span-2 items-center min-h-[100px]' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold text-center tracking-widest max-w-[1100px] leading-15' >
+                        <p className='text-sm lg:text-xl font-light text-center tracking-widest max-w-[1100px] leading-15' >
                             {story?.[8]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -102,7 +102,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             <div className='grid col-span-2 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold text-center tracking-widest max-w-[1100px] leading-15' >
+                        <p className='text-sm lg:text-xl  font-light text-center tracking-widest max-w-[1100px] leading-15' >
                             {story?.[9]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -188,7 +188,7 @@ export const GridThree: React.FC<{ media: any[], story: LocalizedParagraphArray 
             <div className='grid col-span-2 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col items-center gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold text-center tracking-widest max-w-[1100px] leading-15' >
+                        <p className='text-sm lg:text-xl font-light text-center tracking-widest max-w-[1100px] leading-15' >
                             {story?.[10]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
