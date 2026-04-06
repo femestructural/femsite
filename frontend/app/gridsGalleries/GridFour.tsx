@@ -24,7 +24,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
             <div className='grid col-span-3 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 w-full' >
-                        <p className='text-sm lg:text-xl font-semibold text-center max-w-[700px] mx-auto ' >
+                        <p className='text-sm lg:text-xl font-light text-center max-w-[700px] mx-auto ' >
                             {story?.[6]?.[locale as 'en' | 'es'] || ''}
                         </p>
 
@@ -61,7 +61,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
             <div className='grid col-span-3 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold text-center max-w-[700px] mx-auto ' >
+                        <p className='text-sm lg:text-xl font-light text-center max-w-[700px] mx-auto ' >
                             {story?.[7]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -152,7 +152,7 @@ export const GridFour: React.FC<{ media: any[], story: LocalizedParagraphArray |
             <div className='grid col-span-3 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold text-center max-w-[700px] mx-auto ' >
+                        <p className='text-sm lg:text-xl font-light text-center max-w-[700px] mx-auto ' >
                             {story?.[8]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>

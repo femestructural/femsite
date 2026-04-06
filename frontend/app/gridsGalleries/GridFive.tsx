@@ -23,7 +23,7 @@ export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray |
             <div className='grid col-span-1 md:col-span-4 lg:col-span-6 row-start-1 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 w-full items-center justify-center' >
-                        <p className='text-sm lg:text-xl font-semibold' >
+                        <p className='text-sm lg:text-xl font-light' >
                             {story?.[6]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -80,7 +80,7 @@ export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray |
             <div className='grid col-span-1 md:col-span-4 lg:col-span-6 items-center md:row-start-5 lg:row-start-3 py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 w-full items-center justify-center' >
-                        <p className='text-sm lg:text-xl font-semibold max-w-[720px] text-center' >
+                        <p className='text-sm lg:text-xl font-light max-w-[720px] text-center' >
                             {story?.[7]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -136,7 +136,7 @@ export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray |
             <div className='grid col-span-1 md:col-span-4 lg:col-span-6 items-center row-start-9 md:row-start-9 lg:row-start-6 py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 w-full items-center justify-center' >
-                        <p className='text-sm lg:text-xl font-semibold max-w-[720px] text-center' >
+                        <p className='text-sm lg:text-xl font-light max-w-[720px] text-center' >
                             {story?.[8]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -144,18 +144,18 @@ export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray |
             </div>
 
             {/* VIDEO 1 */}
-            <div className='grid col-span-1 md:col-span-4 lg:col-span-6 row-start-10 md:row-start-10 lg:row-start-7 bg-zinc-200 max-h-[80dvh] h-[80dvh]' >
+            <div className='grid col-span-1 md:col-span-4 lg:col-span-6 row-start-10 md:row-start-10 lg:row-start-7 max-h-[80dvh] h-[80dvh]' >
                 <Fade triggerOnce duration={1000} >
                     <StreamingVideo
                         videoUrl={media_seven?.mp4 || ''}
                         posterUrl={media_seven?.src || ''}
-                        height='100%'
+                        height='730px'
                     />
                 </Fade>
             </div>
 
             {/* VIDEO 2 */}
-            <div className='grid col-span-1 md:col-span-4 lg:col-span-6 row-start-11 md:row-start-11 lg:row-start-8 lg:mt-5 bg-zinc-200 ' >
+            <div className='grid col-span-1 md:col-span-4 lg:col-span-6 row-start-11 md:row-start-11 lg:row-start-8 bg-zinc-200 max-h-[80dvh] h-[80dvh]' >
                 <Fade triggerOnce duration={1000} >
                     <ImageWithLoader
                         width={300}

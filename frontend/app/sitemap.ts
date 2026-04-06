@@ -2,60 +2,108 @@ import {MetadataRoute} from 'next'
 import {sanityFetch} from '@/sanity/lib/live'
 import {sitemapData} from '@/sanity/lib/queries'
 import {headers} from 'next/headers'
+import {routing} from '@/i18n/routing'
 
 /**
- * This file creates a sitemap (sitemap.xml) for the application. Learn more about sitemaps in Next.js here: https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
- * Be sure to update the `changeFrequency` and `priority` values to match your application's content.
+ * Generates a sitemap.xml for the application.
+ * Handles multiple locales and translated pathnames.
  */
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const allPostsAndPages = await sanityFetch({
+  const allPostsPagesAndProjects = await sanityFetch({
     query: sitemapData,
   })
+
   const headersList = await headers()
-  const sitemap: MetadataRoute.Sitemap = []
-  const domain: string = headersList.get('host') as string
-  sitemap.push({
-    url: domain as string,
-    lastModified: new Date(),
-    priority: 1,
-    changeFrequency: 'monthly',
+  const host = headersList.get('host') || 'www.femestructural.com.mx'
+  const protocol = host.includes('localhost') ? 'http' : 'https'
+  const baseUrl = `${protocol}://${host}`
+
+  const locales = routing.locales
+  const defaultLocale = routing.defaultLocale
+
+  // 1. Static Routes from routing configuration
+  const staticRoutes = Object.keys(routing.pathnames).map((path) => {
+    const translations = routing.pathnames[path as keyof typeof routing.pathnames]
+    
+    // If it's a string (like '/'), use it for all locales. If it's an object, use the translations.
+    const getPathForLocale = (locale: string) => {
+      if (typeof translations === 'string') return translations
+      return (translations as any)[locale] || path
+    }
+
+    return {
+      url: `${baseUrl}/${defaultLocale}${getPathForLocale(defaultLocale)}`.replace(/\/$/, ''),
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: path === '/' ? 1.0 : 0.8,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((locale) => [
+            locale,
+            `${baseUrl}/${locale}${getPathForLocale(locale)}`.replace(/\/$/, ''),
+          ])
+        ),
+      },
+    }
   })
 
-  if (allPostsAndPages != null && allPostsAndPages.data.length != 0) {
-    let priority: number
-    let changeFrequency:
-      | 'monthly'
-      | 'always'
-      | 'hourly'
-      | 'daily'
-      | 'weekly'
-      | 'yearly'
-      | 'never'
-      | undefined
-    let url: string
+  // 2. Dynamic Routes from Sanity (Pages, Posts, Projects)
+  const dynamicRoutes: MetadataRoute.Sitemap = []
 
-    for (const p of allPostsAndPages.data) {
-      switch (p._type) {
+  if (allPostsPagesAndProjects?.data) {
+    for (const item of allPostsPagesAndProjects.data) {
+      let priority = 0.5
+      let changeFrequency: 'monthly' | 'weekly' = 'monthly'
+      let routePrefix = ''
+
+      switch (item._type) {
         case 'page':
-          priority = 0.8
-          changeFrequency = 'monthly'
-          url = `${domain}/${p.slug}`
+          priority = 0.7
+          routePrefix = '' // Direct under locale
           break
-        case 'post':
-          priority = 0.5
-          changeFrequency = 'never'
-          url = `${domain}/posts/${p.slug}`
+        case 'project':
+          priority = 0.9
+          changeFrequency = 'weekly'
+          // Projects live under /portafolio (es) or /portfolio (en)
           break
       }
-      sitemap.push({
-        lastModified: p._updatedAt || new Date(),
-        priority,
-        changeFrequency,
-        url,
-      })
+
+      // Special handling for projects since the parent path is translated
+      if (item._type === 'project') {
+        const portfolioPathEs = (routing.pathnames['/portafolio'] as any).es
+        const portfolioPathEn = (routing.pathnames['/portafolio'] as any).en
+
+        dynamicRoutes.push({
+          url: `${baseUrl}/es${portfolioPathEs}/${item.slug}`,
+          lastModified: item._updatedAt || new Date(),
+          priority,
+          changeFrequency,
+          alternates: {
+            languages: {
+              es: `${baseUrl}/es${portfolioPathEs}/${item.slug}`,
+              en: `${baseUrl}/en${portfolioPathEn}/${item.slug}`,
+            },
+          },
+        })
+      } else {
+        dynamicRoutes.push({
+          url: `${baseUrl}/${defaultLocale}${routePrefix}/${item.slug}`,
+          lastModified: item._updatedAt || new Date(),
+          priority,
+          changeFrequency,
+          alternates: {
+            languages: Object.fromEntries(
+              locales.map((locale) => [
+                locale,
+                `${baseUrl}/${locale}${routePrefix}/${item.slug}`,
+              ])
+            ),
+          },
+        })
+      }
     }
   }
 
-  return sitemap
+  return [...staticRoutes, ...dynamicRoutes]
 }

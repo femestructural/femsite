@@ -37,7 +37,7 @@ export const GridOne: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             <div className='grid col-span-1 jusitfy-center items-center md:col-span-4 lg:col-span-1 lg:row-start-2 lg:col-start-1 lg:col-end-3 py-4 lg:py-0 lg:h-[430px]' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4' >
-                        <p className='text-sm lg:text-xl font-semibold text-center'>
+                        <p className='text-sm lg:text-xl font-light text-center'>
                             {story?.[6]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -101,7 +101,7 @@ export const GridOne: React.FC<{ media: any[], story: LocalizedParagraphArray | 
             <div className='grid col-span-1 md:col-span-4 lg:col-span-4 row-start-7 md:row-start-7 lg:row-start-5 py-5 ' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 w-full items-center ' >
-                        <p className='text-sm lg:text-xl font-semibold w-full max-w-[700px] mx-auto text-center'>
+                        <p className='text-sm lg:text-xl font-light w-full max-w-[700px] mx-auto text-center'>
                             {story?.[7]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>

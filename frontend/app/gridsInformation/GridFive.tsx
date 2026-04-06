@@ -1,11 +1,14 @@
 'use client';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import ImageWithLoader from '../components/ImageWithLoader';
 import StreamingVideo from '../components/StreamingVideo';
 import { Fade } from "react-awesome-reveal";
 import { LocalizedParagraphArray } from '@/sanity.types';
 
 export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray | undefined, locale: string }> = ({ media, story, locale }) => {
+
+    const translate = useTranslations('ProjectPage');
 
     const media_one = media?.[0];
     const media_two = media?.[1];
@@ -21,29 +24,29 @@ export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray |
     return (
         <section className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 grid-rows-[repeat(12, 200px)] gap-5 p-4 mb-5  ' >
 
-       
+
             <div className='grid col-span-1 md:col-span-3 lg:col-span-3 md:row-start-1 items-center py-5 ' >
                 <Fade triggerOnce duration={1000} >
                     <div className='flex flex-col gap-5 xl:flex-row items-center justify-between w-full ' >
                         <article className='flex flex-col w-full lg:max-w-[450px] items-start md:items-center xl:items-start gap-5 px-4' >
-                            <p className='text-sm lg:text-xl font-semibold' >
-                                {story?.[0]?.[locale as 'en' | 'es'] || ''}
+                            <p className='text-sm lg:text-xl' >
+                                <span className='font-semibold' >{translate('Design')} —</span>{story?.[0]?.[locale as 'en' | 'es'] || ''}
                             </p>
 
-                            <p className='text-sm lg:text-xl font-semibold' >
-                                {story?.[1]?.[locale as 'en' | 'es'] || ''}
+                            <p className='text-sm lg:text-xl' >
+                                <span className='font-semibold' >{translate('Area')} —</span>{story?.[1]?.[locale as 'en' | 'es'] || ''}
                             </p>
 
                         </article>
 
                         <article className='flex flex-col w-full xl:w-[800px] items-start md:items-center xl:items-start gap-5 px-4 ' >
 
-                            <p className='text-sm lg:text-xl font-semibold' >
-                                {story?.[2]?.[locale as 'en' | 'es'] || ''}
+                            <p className='text-sm lg:text-xl' >
+                                <span className='font-semibold' >{translate('System')} —</span>{story?.[2]?.[locale as 'en' | 'es'] || ''}
                             </p>
 
-                            <p className='text-sm lg:text-xl font-semibold' >
-                                {story?.[3]?.[locale as 'en' | 'es'] || ''}
+                            <p className='text-sm lg:text-xl' >
+                                <span className='font-semibold' >{translate('Result')} —</span>{story?.[3]?.[locale as 'en' | 'es'] || ''}
                             </p>
 
                         </article>
@@ -103,7 +106,7 @@ export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray |
             <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-5 md:row-start-5 lg:row-start-4 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 w-full items-center justify-center' >
-                        <p className='text-sm lg:text-xl font-semibold text-center' >
+                        <p className='text-sm lg:text-xl font-light text-center' >
                             {story?.[4]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -144,7 +147,7 @@ export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray |
             <div className='grid col-span-1 md:col-span-3 lg:col-span-3 row-start-8 md:row-start-8 lg:row-start-6 items-center py-5' >
                 <Fade triggerOnce duration={1000} >
                     <article className='flex flex-col gap-5 px-4 w-full items-center justify-center' >
-                        <p className='text-sm lg:text-xl font-semibold' >
+                        <p className='text-sm lg:text-xl font-light' >
                             {story?.[5]?.[locale as 'en' | 'es'] || ''}
                         </p>
                     </article>
@@ -210,7 +213,7 @@ export const GridFive: React.FC<{ media: any[], story: LocalizedParagraphArray |
                     />
                 </Fade>
             </div>
-         
+
 
             {/* MEDIA 10 VIDEO */}
             <div className='grid col-span-1 md:col-span-4 lg:col-span-4 row-start-13 md:row-start-13 lg:row-start-10 bg-zinc-200 min-h-[400px] max-h-[95dvh]' >

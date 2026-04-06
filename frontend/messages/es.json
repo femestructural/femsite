@@ -155,6 +155,12 @@
             "presencial": "Reunión presencial"
         }
     },
+    "ProjectPage": {
+        "Design": "Diseño Arquitectonico",
+        "Area": "Área construida",
+        "System": "Sistema estructural",
+        "Result": "Resultado"
+    },
     "CTAs": {
         "results": "Nuestros resultados",
         "aboutUs": "Conoce más sobre nosotros",
